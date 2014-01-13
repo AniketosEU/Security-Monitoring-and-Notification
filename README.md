@@ -1,4 +1,4 @@
-Security-Monitoring-and-Notification-package
+Security-Monitoring-and-Notification
 ============================================
 
-Security Monitoring and Notification package
+Security Monitoring and Notification
