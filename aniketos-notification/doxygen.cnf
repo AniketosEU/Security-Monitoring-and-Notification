@@ -1,0 +1,38 @@
+# Please copy this template (along with the batch file) and use it in your module directory.
+# Fill in the below parameters, but do not change the @INCLUDE line
+@INCLUDE = "$(ANIKETOS_SVN_ROOT)\WP8\Templates\DoxyConfig\doxygen_general.cnf"
+
+# The PROJECT_NAME tag is a single word (or sequence of words) that should 
+# identify the project. Note that if you do not use Doxywizard you need 
+# to put quotes around the project name if it contains spaces.
+
+PROJECT_NAME           = "Notification"
+
+# The PROJECT_NUMBER tag can be used to enter a project or revision number. 
+# This could be handy for archiving the generated documentation or 
+# if some version control system is used.
+
+PROJECT_NUMBER         = "Aniketos/WP4"
+
+# Using the PROJECT_BRIEF tag one can provide an optional one line description 
+# for a project that appears at the top of each page and should give viewer 
+# a quick idea about the purpose of the project. Keep the description short.
+
+PROJECT_BRIEF          = "Notification module"
+
+# The INPUT tag can be used to specify the files and/or directories that contain 
+# documented source files. You may enter file names like "myfile.cpp" or 
+# directories like "/usr/src/myproject". Separate the files or directories 
+# with spaces.
+
+INPUT                  = .\client\ \
+                         .\impl\ \
+                         .\interface\
+
+# The EXCLUDE tag can be used to specify files and/or directories that should be 
+# excluded from the INPUT source files. This way you can easily exclude a 
+# subdirectory from a directory tree whose root is specified with the INPUT tag. 
+# Note that relative paths are relative to the directory from which doxygen is 
+# run.
+
+EXCLUDE                = 

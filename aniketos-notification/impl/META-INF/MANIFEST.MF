@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Aniketos Notification implementation Bundle
+Bundle-SymbolicName: eu.aniketos.wp4.components.notification.impl
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: eu.aniketos.wp4.components.notification.impl.Activator
+Bundle-Description: This bundle contains the implementation of the Aniketos Notification Interface

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" 
+               name="eu.aniketos.notification.webtrigger.servlet">
+   <implementation class="eu.aniketos.notification.webtrigger.AlertServlet"/>
+   <service>
+      <provide interface="javax.servlet.Servlet"/>
+   </service>
+   
+   <reference name="Alert" policy="static" cardinality="1..1" 
+              interface="eu.aniketos.notification.IAlert" 
+              bind="setAlertService" unbind="unsetAlertService"/>
+   
+   <property name="Web-ContextPath" type="String" value="/alert"/>
+   <property name="name" type="String" value="alert"/> 
+</scr:component>

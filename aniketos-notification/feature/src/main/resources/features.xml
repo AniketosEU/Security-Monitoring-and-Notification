@@ -1,0 +1,22 @@
+<features>
+  <feature name="aniketos_notification" version="1.0">    
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-interface/1.0-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-client/1.0-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-service/1.0-SNAPSHOT</bundle>
+  </feature>
+  <feature name="aniketos_notification_client" version="1.0">    
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-interface/1.0-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-client/1.0-SNAPSHOT</bundle>
+  </feature>
+  <feature name="aniketos_notification_service" version="1.0">    
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-interface/1.0-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-service/1.0-SNAPSHOT</bundle>
+  </feature>
+  <feature name="aniketos_notification_interface" version="1.0">    
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-interface/1.0-SNAPSHOT</bundle>
+  </feature>
+  <feature name="aniketos_notification_trigger" version="1.0">    
+    <bundle start="false">mvn:eu.aniketos.notification/aniketos-notification-trigger/1.0-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.notification/aniketos-notification-webtrigger/1.0-SNAPSHOT</bundle>
+  </feature>
+</features>

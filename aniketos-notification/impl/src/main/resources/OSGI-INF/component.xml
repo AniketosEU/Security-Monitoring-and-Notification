@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="eu.aniketos.notification.impl" immediate="true">
+   <implementation class="eu.aniketos.notification.impl.NotificationServiceImpl"/>
+   <service>
+      <provide interface="eu.aniketos.notification.IAlert"/>
+   </service>
+   <property name="service.exported.interfaces" type="String" value="*"/>
+   <property name="service.exported.configs" type="String" value="org.apache.cxf.ws"/>
+   <property name="org.apache.cxf.ws.address" type="String" value="http://localhost:9090/notification"/>
+</scr:component>

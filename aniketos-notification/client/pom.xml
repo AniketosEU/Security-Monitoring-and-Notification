@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.aniketos.notification</groupId>
+	<artifactId>aniketos-notification-client</artifactId>
+	<packaging>bundle</packaging>
+	<name>Aniketos Notification Reference Client</name>
+	<parent>
+		<groupId>eu.aniketos.notification</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<bundle.import.package>*</bundle.import.package>
+		<bundle.private.package>eu.aniketos.notification.client</bundle.private.package>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>eu.aniketos.notification</groupId>
+			<artifactId>aniketos-notification-interface</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>bundle</type>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.2.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-client</artifactId>
+			<version>5.8.0</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Name>Aniketos Notification Client reference implementation</Bundle-Name>
+						<Bundle-Description>This bundle contains a reference implementation of an Aniketos client Notification subscriber</Bundle-Description>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Activator>eu.aniketos.notification.client.Activator</Bundle-Activator>
+                    	<Bundle-ClassPath>.</Bundle-ClassPath>
+						<Import-Package>${bundle.import.package}</Import-Package>
+						<Private-Package>${bundle.private.package}</Private-Package>
+						<DynamicImport-Package>org.apache.cxf.dosgi.dsw.qos,org.apache.cxf</DynamicImport-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

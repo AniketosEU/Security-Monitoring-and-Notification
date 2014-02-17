@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.aniketos.notification</groupId>
+	<artifactId>aniketos-notification-service</artifactId>
+	<packaging>bundle</packaging>
+	<name>Aniketos Notification IAlert Service</name>
+	<parent>
+		<groupId>eu.aniketos.notification</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<bundle.import.package>eu.aniketos.notification, org.osgi.framework, javax.jms, javax.naming, org.apache.activemq, org.apache.activemq.security, org.slf4j, javax.net.ssl</bundle.import.package>
+		<bundle.private.package>eu.aniketos.notification.impl</bundle.private.package>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>eu.aniketos.notification</groupId>
+			<artifactId>aniketos-notification-interface</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>bundle</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-client</artifactId>
+			<version>5.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>2.6.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/wsdl/brokerService.wsdl</wsdl>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Name>Aniketos Notification Platform Service Bundle</Bundle-Name>
+						<Bundle-Description>This bundle contains the implementation of the Aniketos Notification Interface</Bundle-Description>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Import-Package>${bundle.import.package}</Import-Package>
+						<Private-Package>${bundle.private.package}</Private-Package>
+						<Service-Component>OSGI-INF/component.xml</Service-Component>
+						<!--
+						<Bundle-Activator>eu.aniketos.wp4.components.notification.impl.Activator</Bundle-Activator>
+                    	<Bundle-ClassPath>., lib/geronimo-spec-j2ee-management-1.0-rc4.jar, lib/geronimo-spec-jms-1.1-rc4.jar, lib/geronimo-spec-jta-1.0.1B-rc4.jar</Bundle-ClassPath>
+						<Embed-Dependency>scope=compile|runtime;inline=true</Embed-Dependency>
+						<Embed-Directory>lib/</Embed-Directory>
+						<Embed-Transitive>true</Embed-Transitive>						
+						-->
+						<DynamicImport-Package>org.apache.cxf.dosgi.dsw.qos,org.apache.cxf</DynamicImport-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

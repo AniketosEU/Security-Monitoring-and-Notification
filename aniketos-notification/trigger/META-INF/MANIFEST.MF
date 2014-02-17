@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Aniketos Notification Reference Client
+Bundle-SymbolicName: eu.aniketos.notification.client
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: eu.aniketos.notification.client.Activator
+Bundle-Description: This bundle contains the a reference implementation an Aniketos Notification client

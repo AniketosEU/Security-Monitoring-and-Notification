@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" 
+               immediate="true"
+               name="eu.aniketos.notification.webtrigger.servletmanager">
+   <implementation class="eu.aniketos.notification.webtrigger.ServletManager"/>
+
+   <reference bind="setHttpService" cardinality="1..1" 
+   			  interface="org.osgi.service.http.HttpService" 
+   			  name="HttpService" policy="static" unbind="unsetHttpService"/>
+   <reference bind="setServlet" cardinality="1..1"
+              target="(name=alert)" 
+   			  interface="javax.servlet.Servlet" 
+   			  name="AlertServlet" 
+              policy="static" unbind="unsetServlet"/>
+   
+</scr:component>

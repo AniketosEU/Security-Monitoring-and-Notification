@@ -1,0 +1,256 @@
+<html>
+<head>
+    <title>Notification Trigger</title>
+    
+    <link href="jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css" />
+
+    <script src="jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+    <script src="jquery-ui-1.8.14.custom.min.js" type="text/javascript"></script> 
+    
+    <style>
+    .search-form
+    {
+        padding: 8px 8px 8px 8px;
+        width: 600px;
+    }
+
+    label
+    {
+        font-weight: bold;
+        color: #4776AA;
+    }
+
+    label.fixed
+    {
+        display: block;
+        float: left;
+        width: 140px;
+        vertical-align: middle;
+    }
+
+    .big-text
+    {
+        width: 400px;
+    }
+
+    #DescriptionFreeText 
+    {
+        margin-left: -403px;
+        width: 380px;
+        border: 0;
+    }
+    
+    div.form-field
+    {
+        margin-bottom: 5px;
+    }
+
+    .error
+    {
+        color: Red;
+    }
+    
+    </style>
+
+    <script>
+
+    var threatLevelChangeDescriptions = [
+            "Adaption impacts functionality",
+            "Cascade failures",
+            "Changed security interface",
+            "Corrupt load balancing",
+            "DDoS attack on service component",
+            "Decreasing reputation",
+            "Degrade policy negotiation",
+            "Degraded security interface",
+            "Dissolved redundancy",
+            "End user annoyed by confirmations",
+            "Extracting information from logs",
+            "False perception of trust for end user",
+            "Incompatibility issues",
+            "Incompatible access control models",
+            "Incompatible laws",
+            "Information and accountability lost",
+            "Insecure interfaces and apis",
+            "Insufficient automated security evaluation",
+            "Interaction based threats",
+            "Lack of trust between providers",
+            "Lack of usability in secure compositon",
+            "Malicious service",
+            "Malicious service provider",
+            "Manipulation of trust properties",
+            "Missing end user notification",
+            "Non functional constaints violation via composition",
+            "Privacy violation via compositon",
+            "Recomposition corrupts response time",
+            "Security guidelines compromised",
+            "Service injection",
+            "Synchronization threats",
+            "Trust poisoning",
+            "Trustworthiness management threats",
+            "Untrusted outsourcing or delegation",
+            "Untrusted service composition",
+            "User interaction issues"];
+    
+    var contextChangeDescriptions = ["Service site changed"];
+        
+    function updateDescriptions() {
+        $("#DescriptionFreeText").val("");
+        $("#Description").html("");
+        $("#Description").append("<option value=''></option>");
+        
+        var type = $("#Type").val();
+        if (type == "ThreatLevelChange") {
+            $.each(threatLevelChangeDescriptions, function() {
+                $("#Description").append("<option value='" + this + "'>" + this + "</option>");
+            });
+        }
+        else if (type == "ContextChange") {
+            $.each(contextChangeDescriptions, function() {
+                $("#Description").append("<option value='" + this + "'>" + this + "</option>");
+            });
+        }    
+    }
+        
+    $(function() {
+        $("#Alert").button({
+            icons: { primary: "ui-icon-circle-arrow-e" }
+        });        
+        
+        updateDescriptions();
+        
+        $("#Type").change(function () {
+            updateDescriptions();
+        });
+        
+        $("#Description").change(function () {
+            $("#DescriptionFreeText").val($(this).val());
+            
+            var desc = $(this).val();
+            var type = $("#Type").val();
+            
+            if (type == "ThreatLevelChange" && desc.length > 0) {                
+                if (desc == "Incompatibility issues" || 
+                        desc == "Incompatible access control models" ||
+                        desc == "Incompatible laws") {
+                    $("#ThreatId").val("068d7290-c6be-4a57-a436-f63b56ce3525");
+                }
+                else if (desc == "Trust poisoning") {
+                    $("#ThreatId").val("a7b64361-d6ff-43ab-b2ff-10caf8e16b08");
+                }
+                else if (desc == "Untrusted service composition") {
+                    $("#ThreatId").val("22b4ecd8-507d-4e1a-a5dd-3c9a362fd3b9");
+                }
+                else if (desc == "Malicious service" || 
+                            desc == "Malicious service provider" || 
+                            desc == "Insecure interfaces and apis" || 
+                            desc == "Degraded security interface") {
+                    $("#ThreatId").val("3dc34eea-f4bf-4056-b850-51d48ae7100a");
+                }
+                else if (desc == "Privacy violation via compositon") {
+                    $("#ThreatId").val("4ca25fa2-500e-4efe-8ad5-034a4c14cdb8");
+                }
+                else if (desc == "Adaption impacts functionality") {
+                    $("#ThreatId").val("5dc0e1a2-d6b9-4d44-b890-3bdc87b05eb5");
+                }
+                else if (desc == "DDoS attack on service component") {
+                    $("#ThreatId").val("f56fe85e-f673-4567-be02-5d63420b4fb4");
+                }
+                else if (desc == "Information and accountability lost") {
+                    $("#ThreatId").val("f0f9d897-c2e3-41d0-9672-4683fd9f3be0");
+                }
+                else if (desc == "Non functional constaints violation via composition") {
+                    $("#ThreatId").val("2c06f975-3ba6-4c62-95d1-dbad107e1de3");
+                }
+                else if (desc == "Information and accountability lost") {
+                    $("#ThreatId").val("f0f9d897-c2e3-41d0-9672-4683fd9f3be0");
+                }
+                else if (desc == "User interaction issues" || 
+                            desc == "End_user_annoyed_by_confirmations") {
+                    $("#ThreatId").val("443c9ca4-d85a-40ac-b61a-eacc28d947d1");
+                }
+                else {
+                    $("#ThreatId").val("");
+                }
+            }
+            else {
+                $("#ThreatId").val("");				
+            }       
+        });
+        
+        $("#Alert").click(function() {
+            var serviceId = $("#ServiceId").val();
+            var type = $("#Type").val();
+            var description = $("#DescriptionFreeText").val();
+            var value = $("#Value").val();
+            var threatId = $("#ThreatId").val();
+            var $result = $(this).next();           
+           
+            if (serviceId.length == 0) {
+                $result.text("Service Id is empty!");
+                $result.addClass("error");
+                return;
+            }           
+            $.ajax({ type: "POST", url: "alert", dataType: "json", 
+                     data: {"serviceId": serviceId, "val": value, "desc" : description,
+                            "type": type, "threatId" : threatId},
+                     success: function(data) {
+                        if (data.success) {
+                            $result.text("Trigger sent!");
+                            $result.removeClass("error");
+                        }
+                        else {
+                            $result.text(data.error);
+                            $result.addClass("error");
+                        }
+                     },
+                     error: function() {
+                        alert ("There was an error with the request!");
+                     }});            
+        });       
+    });
+    </script>
+</head>
+<body>
+<div>
+    <div class="search-form">
+        <div class="form-field">
+            <label class="fixed" for="ServiceId">Service Id: </label>
+            <input id="ServiceId" type="text" name="serviceId" class="ui-widget-content ui-corner-all big-text" />
+        </div>
+        <div class="form-field">
+            <label class="fixed" for="Type">Type: </label>
+            <select id="Type" name="type" class="ui-widget-content ui-corner-all big-text">
+                <option value="ContextChange">Context Change</option>
+                <option value="ContextChange">Context Change</option>
+                <option value="ContractChange">Contract Change</option>
+                <option value="ContractViolation">Contract Violation</option>
+                <option value="SecurityPropertyChange">Security Property Change</option>
+                <option value="ServiceChange">Service Change</option>
+                <option value="ThreatLevelChange">Threat Level Change</option>
+                <option value="TrustLevelChange">Trust Level Change</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label class="fixed" for="Description">Description: </label>
+            <select id="Description" name="desc" class="ui-widget-content ui-corner-all big-text">
+            </select>
+            <input id="DescriptionFreeText" />
+        </div>
+        <div class="form-field">
+            <label class="fixed" for="Value">Value: </label>
+            <input id="Value" type="text" name="val" class="ui-widget-content ui-corner-all big-text" />
+        </div>
+        <div class="form-field">
+            <label class="fixed" for="ThreatId">Threat Id: </label>
+            <input id="ThreatId" type="text" name="threatId" class="ui-widget-content ui-corner-all big-text" />
+        </div>        
+        <div style="margin-top:12px;margin-bottom:20px;">
+            <button id="Alert">Send Notification</button>
+            <span class="result"></span>
+        </div>
+    </div>   
+</div>
+</body>
+</html>
