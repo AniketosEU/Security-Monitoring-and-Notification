@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:countermeasure  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xmlns:a='http://www.aniketos.eu'
+   xsi:schemaLocation='http://www.aniketos.eu Countermeasure.xsd'>
+
+    <a:metadata>
+        <a:counter_id>01234567-89ab-cdef-0123-456789abcdef</a:counter_id>
+        <a:name>Example countermeasure</a:name>
+        <a:description>Description of the countermeasure goes here.</a:description>
+        <a:type>pattern</a:type>
+        <a:creationdate>2012-01-01T13:14:15Z</a:creationdate>
+        <a:lastupdated>2012-01-02T17:18:19Z</a:lastupdated>
+        <a:externalrefs>
+            <a:externalref>http://www.example.org/countermeasureinfo.html</a:externalref>
+        </a:externalrefs>
+    </a:metadata>
+    <a:countermeasuredata>PG9wZXJhdGlvbmFsUGFydD4NCiAgICA8dHJ1c3RNZWNoYW5pc21zPmRpZ2l0YWwgc2lnbmF0dXJlPC90cnVzdE1lY2hhbmlzbXM+DQogICAgPHZhbGlkaXR5Pg0KICAgICAgPHZhbGlkRnJvbT4wMTExMjAxMTwvdmFsaWRGcm9tPg0KICAgICAgPHZhbGlkVW50aWw+MDExMTIwMTI8L3ZhbGlkVW50aWw+DQogICAgPC92YWxpZGl0eT4NCiAgICA8bW9uaXRvcnM+DQogICAgICA8bW9uaXRvcj4NCiAgICAgICAgPGlkPlNQTTwvaWQ+DQogICAgICAgIDxsb2NhbGl6YXRpb24+aHR0cDovLzEyNy4wLjAuMTo4MDgwL1NlY3VyaXR5UG9saWN5TW9uaXRvcmluZzwvbG9jYWxpemF0aW9uPg0KICAgICAgICA8dHlwZT5wb2xpY2llczwvdHlwZT4NCiAgICAgICAgPGluaXRpYWxpemF0aW9uPjwvaW5pdGlhbGl6YXRpb24+DQogICAgICA8L21vbml0b3I+DQogICAgPC9tb25pdG9ycz4NCiAgICA8cm9sZXM+DQogICAgIDxyb2xlPg0KICAgICAgICA8cm9sZU5hbWU+UnVudGltZTwvcm9sZU5hbWU+DQoJICA8cm9sZVNjb3BlPlNlcnZpY2U8L3JvbGVTY29wZT4NCiAgICAgICAgPHBhcmFtZXRlcnM+S2V5U2l6ZTwvcGFyYW1ldGVycz4NCgkgIDxwYXJhbWV0ZXJzPkVuY3J5cHRBbGc8L3BhcmFtZXRlcnM+DQogICAgICAgIDxwcmVjb25kaXRpb25zPjwvcHJlY29uZGl0aW9ucz4NCiAgICAgICAgPHN5c3RlbUNvbmZpZ3VyYXRpb24+DQogICAgICAgICAgPHN5c3RlbUNvbmZpZ3VyYXRpb24+DQogICAgICAgICAgICA8ZGVzY3JpcHRpb24+PC9kZXNjcmlwdGlvbj4NCiAgICAgICAgICAgIDxmaWVsZD48L2ZpZWxkPg0KICAgICAgICAgICAgPHZhbHVlPjwvdmFsdWU+DQogICAgICAgICAgPC9zeXN0ZW1Db25maWd1cmF0aW9uPiAgICAgICAgICAgICAgICAgDQogICAgICAgIDxtb25pdG9yaW5nPg0KICAgPG1vbml0b3JpbmdSdWxlPiBFbmNyeXB0QWxnPUFFUyA8L21vbml0b3JpbmdSdWxlPg0KICA8L21vbml0b3Jpbmc+ICAgICAgICAgICAgICAgICANCiAgICAgIDwvcm9sZT4JICANCiAgICA8L3JvbGVzPg0KPC9vcGVyYXRpb25hbFBhcnQ+</a:countermeasuredata>
+    <a:threats>
+        <a:threat>
+            <a:threat_id>ffffeeee-dddd-cccc-bbbb-aaaa99998888</a:threat_id>
+            <a:relation>prevent</a:relation>
+        </a:threat>
+    </a:threats>
+</a:countermeasure>

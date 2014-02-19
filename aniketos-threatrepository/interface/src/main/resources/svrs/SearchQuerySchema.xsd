@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:simpleType name="res">
+<!-- Resource types -->
+        <xsd:restriction base = "xsd:string">
+<!-- Models -->
+<!-- Vulnerability Cause Graph -->
+            <xsd:enumeration value = "vcg"/>
+<!-- Security Activity Graph -->
+            <xsd:enumeration value = "sag"/>
+<!-- Security Goal Indicator Tree -->
+            <xsd:enumeration value = "sgit"/>
+<!-- Vulnerability Inspection Diagram -->
+            <xsd:enumeration value = "vid"/>
+<!-- Vulnerability Detection Condition -->
+            <xsd:enumeration value = "vdc"/>
+<!-- Attack Tree -->
+            <xsd:enumeration value = "at"/>
+<!-- Misuse Case Diagram -->
+            <xsd:enumeration value = "mcd"/>
+<!-- Security Goal Model -->
+            <xsd:enumeration value = "sgm"/>
+<!-- SGIT Specialisation Tree -->
+            <xsd:enumeration value = "sgitspectree"/>
+<!-- Artefacts -->
+            <xsd:enumeration value = "artefact"/>
+            <xsd:enumeration value = "countermeasure"/>
+<!-- Model Elements -->
+            <xsd:enumeration value = "sagactivitynode"/>
+            <xsd:enumeration value = "sagrootnode"/>
+            <xsd:enumeration value = "vcgcausenode"/>
+            <xsd:enumeration value = "vcgconjunctionnode"/>
+            <xsd:enumeration value = "vcgexitnode"/>
+            <xsd:enumeration value = "sgmrootnode"/>
+            <xsd:enumeration value = "sgmsubgoalnode"/>
+            <xsd:enumeration value = "atnode"/>
+            <xsd:enumeration value = "mcdmisusecase"/>
+            <xsd:enumeration value = "mcdsecusecase"/>
+            <xsd:enumeration value = "mcdusecase"/>
+            <xsd:enumeration value = "mcdvulnusecase"/>
+<!-- Core Elements -->
+            <xsd:enumeration value = "category"/>
+            <xsd:enumeration value = "cause"/>
+            <xsd:enumeration value = "securityactivity"/>
+            <xsd:enumeration value = "securitygoal"/>
+            <xsd:enumeration value = "threat"/>
+            <xsd:enumeration value = "vulnerability"/>
+<!-- Generic types -->
+            <xsd:enumeration value = "model"/>
+            <xsd:enumeration value = "modelelement"/>
+            <xsd:enumeration value = "coreelement"/>
+<!-- Generic subtypes -->
+            <xsd:enumeration value = "securityactivitymodel"/>
+            <xsd:enumeration value = "threatmodel"/>
+            <xsd:enumeration value = "vulnerabilitymodel"/>
+            <xsd:enumeration value = "securitygoalmodel"/>
+<!-- Aniketos vulnerability subtypes -->
+            <xsd:enumeration value = "vulnerabilityclass"/>
+            <xsd:enumeration value = "vulnerabilityinstance"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="relations">
+        <xsd:restriction base="xsd:string">
+<!-- Acceptable relations between resources as per D1.3 -->
+            <xsd:enumeration value = "verifies"/>
+            <xsd:enumeration value = "implements"/>
+            <xsd:enumeration value = "fulfils"/>
+            <xsd:enumeration value = "prevents"/>
+            <xsd:enumeration value = "explains"/>
+            <xsd:enumeration value = "threatens"/>
+            <xsd:enumeration value = "resultsin"/>
+            <xsd:enumeration value = "removes"/>
+            <xsd:enumeration value = "detects"/>
+            <xsd:enumeration value = "indicates"/>
+            <xsd:enumeration value = "mitigates"/>
+            <xsd:enumeration value = "causes"/>
+<!-- Additional relations to be used between categories and other core elements -->
+            <xsd:enumeration value = "childof"/>
+            <xsd:enumeration value = "parentof"/>
+            <xsd:enumeration value = "peerof"/>
+            <xsd:enumeration value = "canalsobe"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="search">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="source" minOccurs="1" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="sourcetype" type="tns:res" minOccurs="0" maxOccurs="1"/>
+                            <xsd:element name="sourcenewerthan" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+                            <xsd:element name="sourcemimetype" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+                            <xsd:element name="sourcesearchtext" minOccurs="0" maxOccurs="1">
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:string">
+                                            <xsd:attribute name="casesensitive" type="xsd:integer"/>
+                                            <xsd:attribute name="scope">
+                                                <xsd:simpleType>
+                                                    <xsd:restriction base="xsd:string">
+                                                        <xsd:enumeration value="name"/>
+                                                        <xsd:enumeration value="description"/>
+                                                        <xsd:enumeration value="externalrefs"/>
+                                                        <xsd:enumeration value="tagname"/>
+                                                    </xsd:restriction>
+                                                </xsd:simpleType>
+                                            </xsd:attribute>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="sourceresidset" minOccurs="0" maxOccurs="1">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="resid" minOccurs="1" maxOccurs="unbounded">
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                    <xsd:element name="resuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                                    <xsd:element name="resversion" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="relation" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="relationtype" minOccurs="1" maxOccurs="1">
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                        <!-- Relation between two core elements (source, dest) -->
+                                        <xsd:enumeration value="coreelementassociation"/>
+                                        <!-- Relation between a model (source) to a core element (dest) -->
+                                        <xsd:enumeration value="modelassociation"/>
+                                        <!-- Relation between a model (source) and a model element (dest) -->
+                                        <xsd:enumeration value="modeldecomposition"/>
+                                        <!-- Relation between a model element (source) and a core element (dest) -->
+                                        <xsd:enumeration value="modelelementassociation"/>
+                                        <!-- Relation between a model element (source) and an artefact (dest) -->
+                                        <xsd:enumeration value="modelelementartefact"/>
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+                            <xsd:element name="relationdirection" minOccurs="0" maxOccurs="1">
+<!-- The direction of the relation. This is only used for coreelementassociations, as the other kinds of relations are explicitly one-way.
+  'forward' means the relation is from 'source' to any of the 'destination's.
+  'backward' means that the relation is from any of the 'destination's to 'source'.
+  'self' means that the relation is from 'source' to 'source'; do NOT include <destination> tags in this case! -->
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                        <xsd:enumeration value="forward"/>
+                                        <xsd:enumeration value="backward"/>
+                                        <xsd:enumeration value="self"/>
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+                            <xsd:element name="relationspecialisation" type="tns:relations" minOccurs="0" maxOccurs="1"/>
+                            <!-- Specialisation is only used for coreelementassociation and modelassociation. -->
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="destination" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="destinationtype" type="tns:res" minOccurs="0" maxOccurs="1"/>
+                            <xsd:element name="destinationnewerthan" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+                            <xsd:element name="destinationmimetype" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+                            <xsd:element name="destinationsearchtext" minOccurs="0" maxOccurs="1">
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:string">
+                                            <xsd:attribute name="casesensitive" type="xsd:integer"/>
+                                            <xsd:attribute name="scope">
+                                                <xsd:simpleType>
+                                                    <xsd:restriction base="xsd:string">
+                                                        <xsd:enumeration value="name"/>
+                                                        <xsd:enumeration value="description"/>
+                                                        <xsd:enumeration value="externalrefs"/>
+                                                    </xsd:restriction>
+                                                </xsd:simpleType>
+                                            </xsd:attribute>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="destinationresidset" minOccurs="0" maxOccurs="1">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="resid" minOccurs="1" maxOccurs="unbounded">
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                    <xsd:element name="resuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                                    <xsd:element name="resversion" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <!-- Combine search with download; only for non-artefact searches! -->
+                <xsd:element name="fetchsearch" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+                <!-- The elements below are only used during simple searches (ie. when <relation> and <destination> tags are not present) -->
+                <xsd:element name="stateattime" minOccurs="0" maxOccurs="1" type="xsd:dateTime"/>
+                <xsd:element name="startfromresult" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+                <xsd:element name="returnedresults" minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

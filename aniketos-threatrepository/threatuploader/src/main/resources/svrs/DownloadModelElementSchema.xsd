@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:include schemaLocation="DownloadResourceSchema.xsd"/>
+
+    <xsd:element name="modelelement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:resourcedata"/>
+                <xsd:element name="elementtext" type="xsd:string" minOccurs="0"/>
+                <!-- 'relatedcore' is optional, it can contain 1 related core element (the semantics of this depend on the actual model element) -->
+                <xsd:element name="relatedcore" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <!-- 'relatedartefact' is optional, it can contain 1 related artefact (the semantics of this depend on the actual model element) -->
+                <xsd:element name="relatedartefact" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:choice minOccurs="0">
+                    <xsd:element name="vcgcausenode">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="vcgstereotype" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="vcgconjunctionnode">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="vcgstereotype" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                                <xsd:element name="containednodes" minOccurs="0" maxOccurs="1">
+                                    <xsd:complexType>
+                                        <xsd:sequence>
+                                            <xsd:element name="containednode" minOccurs="1" maxOccurs="unbounded">
+                                                <xsd:complexType>
+                                                    <xsd:sequence>
+                                                        <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                                        <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                                    </xsd:sequence>
+                                                </xsd:complexType>
+                                            </xsd:element>
+                                        </xsd:sequence>
+                                    </xsd:complexType>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="vcgexitnode"/>
+                    <xsd:element name="sagactivitynode"/>
+                    <xsd:element name="sagrootnode"/>
+                    <xsd:element name="atnode"/>
+                    <xsd:element name="mcdmisusecase"/>
+                    <xsd:element name="mcdvulnerabilityusecase"/>
+                    <xsd:element name="mcdsecurityusecase"/>
+                    <xsd:element name="mcdusecase"/> <!-- Note: normal usecases are not linked to core elements -->
+                    <xsd:element name="sgmrootnode"/>
+                    <xsd:element name="sgmsubgoalnode">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="subgoaltype" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                <!-- Type 0: positive (contributing) subgoal; type 1: negative (counteracting) subgoal. -->
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+                <xsd:element name="partofmodels" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="model" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+</xsd:schema>

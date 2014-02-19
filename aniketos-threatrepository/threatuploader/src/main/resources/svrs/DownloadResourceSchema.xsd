@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:element name="resourcedata">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="description" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="changedesc" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="status" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="accesslevel" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="creationdate" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="lastmodified" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="author" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="lastmodifiedby" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="resourcetype" minOccurs="1" maxOccurs="1">
+                    <xsd:simpleType>
+                        <xsd:restriction base = "xsd:string">
+<!-- Models -->
+<!-- Vulnerability Cause Graph -->
+                            <xsd:enumeration value = "vcg"/>
+<!-- Security Activity Graph -->
+                            <xsd:enumeration value = "sag"/>
+<!-- Security Goal Indicator Tree -->
+                            <xsd:enumeration value = "sgit"/>
+<!-- Vulnerability Inspection Diagram -->
+                            <xsd:enumeration value = "vid"/>
+<!-- Vulnerability Detection Condition -->
+                            <xsd:enumeration value = "vdc"/>
+<!-- Attack Tree -->
+                            <xsd:enumeration value = "at"/>
+<!-- Misuse Case Diagram -->
+                            <xsd:enumeration value = "mcd"/>
+<!-- Security Goal Model -->
+                            <xsd:enumeration value = "sgm"/>
+<!-- SGIT Specialisation Tree -->
+                            <xsd:enumeration value = "sgitspectree"/>
+<!-- Artefacts -->
+                            <xsd:enumeration value = "artefact"/>
+                            <xsd:enumeration value = "countermeasure"/>
+<!-- Model Elements -->
+                            <xsd:enumeration value = "sagactivitynode"/>
+                            <xsd:enumeration value = "sagrootnode"/>
+                            <xsd:enumeration value = "vcgcausenode"/>
+                            <xsd:enumeration value = "vcgconjunctionnode"/>
+                            <xsd:enumeration value = "vcgexitnode"/>
+                            <xsd:enumeration value = "sgmrootnode"/>
+                            <xsd:enumeration value = "sgmsubgoalnode"/>
+                            <xsd:enumeration value = "atnode"/>
+                            <xsd:enumeration value = "mcdmisusecase"/>
+                            <xsd:enumeration value = "mcdsecusecase"/>
+                            <xsd:enumeration value = "mcdusecase"/>
+                            <xsd:enumeration value = "mcdvulnusecase"/>
+<!-- Core Elements -->
+                            <xsd:enumeration value = "category"/>
+                            <xsd:enumeration value = "cause"/>
+                            <xsd:enumeration value = "securityactivity"/>
+                            <xsd:enumeration value = "securitygoal"/>
+                            <xsd:enumeration value = "threat"/>
+                            <xsd:enumeration value = "vulnerability"/>
+<!-- Aniketos vulnerability subtypes -->
+                            <xsd:enumeration value = "vulnerabilityclass"/>
+                            <xsd:enumeration value = "vulnerabilityinstance"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="externalrefs" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="externalref" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="tags" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="tag" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>                
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

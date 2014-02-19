@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:element name="changes">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="change" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="changetime" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="updater" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="status" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="changedesc" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

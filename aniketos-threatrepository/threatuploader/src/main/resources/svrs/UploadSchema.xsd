@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:include schemaLocation="UploadModelSchema.xsd"/>
+    <xsd:include schemaLocation="UploadCoreElementSchema.xsd"/>
+    <xsd:include schemaLocation="UpdateResourceSchema.xsd"/>
+
+    <xsd:element name="resource">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:updateinfo" minOccurs="0" maxOccurs="1"/>
+                <xsd:choice>
+                    <xsd:element ref="tns:model"/>
+                    <xsd:element ref="tns:coreelement"/>
+                </xsd:choice>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

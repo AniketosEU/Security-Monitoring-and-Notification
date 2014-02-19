@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>TRParent</artifactId>
+		<groupId>eu.aniketos.threatrepository</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<groupId>eu.aniketos.threatrepository.client</groupId>
+	<artifactId>threatrepository-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	<name>Aniketos Threat Repository Module Client</name>
+	<description>This is an example client for the Aniketos Threat Repository Module, illustrating how to use some of its functions.</description>
+	<dependencies>
+		<dependency>
+			<groupId>eu.aniketos.threatrepository</groupId>
+			<artifactId>threatrepository-interface</artifactId>
+			<version>0.1-SNAPSHOT</version>
+			<type>bundle</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>${felix.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.osgi.foundation</artifactId>
+					<groupId>org.apache.felix</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Bundle-Name>Aniketos Threat Repository Client Bundle</Bundle-Name>
+						<Bundle-Description>This is an example client for the Aniketos
+							Threat Repository Module, illustrating how to use some of its
+							functions.</Bundle-Description>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Import-Package>*</Import-Package>
+						<Private-Package>eu.aniketos.threatrepository.client</Private-Package>
+						<Service-Component>OSGI-INF/component.xml</Service-Component>
+						<DynamicImport-Package>org.apache.cxf.dosgi.dsw.qos,
+							org.apache.cxf</DynamicImport-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+</project>

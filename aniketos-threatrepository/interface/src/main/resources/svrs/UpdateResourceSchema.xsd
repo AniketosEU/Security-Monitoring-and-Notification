@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified">
+
+    <xsd:element name="updateinfo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="origversion" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                <!-- NOTE: the origversion field is only meaningful for model elements; for other
+                  resource types, it is simply a text field to be displayed during the endorsement process.
+
+                If this field is PRESENT for a model element, the SVRS will assume that the tool
+                  wants to update an existing element; if a proper element does not exist, it will throw an error.
+                If this field is OMITTED for a model element, the SVRS will be more lenient; if a proper element
+                  does not exist, it will assume that the model element is intended to be 'new'; if it does, it will
+                  assume that the model element is intended to be an update.
+                This way it is possible for tools to tell the SVRS that they want to 'update an existing model
+                  element if it is possible, create a new model element if not' -->
+                <xsd:element name="updatecomment" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

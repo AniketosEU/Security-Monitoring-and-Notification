@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:element name="countermeasure">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="cmtype" minOccurs="1" maxOccurs="1">
+                    <xsd:simpleType>
+                        <xsd:restriction base = "xsd:string">
+                            <xsd:enumeration value = "policy"/>
+                            <xsd:enumeration value = "pattern"/>
+                            <xsd:enumeration value = "monitoringcontrol"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="mimetype" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="content" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="execresponsible" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="resultdesc" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="preconditions" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="precondition" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,73 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.aniketos.threatrepository</groupId>
+        <artifactId>TRParent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+	<properties>
+		<commons-codec-version>1.6</commons-codec-version>
+    </properties>
+
+    <groupId>eu.aniketos.threatrepository.impl</groupId>
+    <artifactId>threatrepository-impl</artifactId>
+    <packaging>bundle</packaging>
+    <name>Aniketos Threat Repository Implementation Bundle</name>
+    <dependencies>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>${felix.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.osgi.foundation</artifactId>
+					<groupId>org.apache.felix</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.aniketos.threatrepository</groupId>
+            <artifactId>threatrepository-interface</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+	<!-- 	<dependency>
+			<groupId>com.sun.xml</groupId>
+			<artifactId>com.springsource.com.sun.xml.bind</artifactId>
+			<version>2.2.0</version>
+		</dependency> -->
+    </dependencies>
+    <build>
+        <plugins>
+			<plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Name>Aniketos Threat Repository Implementation</Bundle-Name>
+                        <Bundle-Description>This bundle contains the implementation of Aniketos Threat Repository</Bundle-Description>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Import-Package>eu.aniketos.threatrepository, org.osgi.framework, eu.aniketos.threatrepository.schema.download, eu.aniketos.threatrepository.schema.upload, javax.net.ssl, javax.xml.bind, javax.xml.datatype, svrs.schema.download, svrs.schema.search, svrs.schema.searchres, svrs.schema.upload, svrs.schema.taglist, *</Import-Package> 
+                        <Private-Package>eu.aniketos.threatrepository.impl</Private-Package>
+                        <Service-Component>OSGI-INF/component.xml</Service-Component>
+                        <DynamicImport-Package>org.apache.cxf.dosgi.dsw.qos,org.apache.cxf</DynamicImport-Package>
+                        <Export-Package>eu.aniketos.threatrepository.impl, eu.aniketos.threatrepository.impl.util</Export-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.aniketos.eu"
+    xmlns:tns="http://www.aniketos.eu"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:element name="threat">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="metadata" minOccurs="1" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <!-- UUID of the threat in the repository. -->
+                            <xsd:element name="threat_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <!-- Name of the threat in the repository. -->
+                            <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <!-- Text description of the threat in the repository. -->
+                            <xsd:element name="description" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <!-- Type of the threat. -->
+                            <xsd:element name="type" minOccurs="1" maxOccurs="1">
+                                <xsd:simpleType>
+                                    <xsd:restriction base = "xsd:string">
+                                        <!-- This refers to high-level threats, such as data leakage. -->
+                                        <xsd:enumeration value = "threat"/>
+                                        <!-- This refers to a generic class of vulnerabilities, such as overflow errors or injection errors. -->
+                                        <xsd:enumeration value = "vulnerabilityclass"/>
+                                        <!-- This refers to specific vulnerability instances, e.g. a buffer overflow in SomeSoft v6.32. -->
+                                        <xsd:enumeration value = "vulnerability"/>
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+                            <!-- Date when the threat was first created in the repository. -->
+                            <xsd:element name="creationdate" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                            <!-- The name of the user who originally created the threat. -->
+                            <xsd:element name="creator" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <!-- Date when the threat was last updated. Can be the same as the creation date. -->
+                            <xsd:element name="lastupdated" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                            <!-- The name of the user who last updated the threat. -->
+                            <xsd:element name="lastupdatedby" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <!-- A D4.1 threat class this threat is associated with (if applicable). This field may work better as a UUID. -->
+                            <xsd:element name="threatclass" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                            <!-- An optional link to an SVRS 'cause' resource that can cause this threat directly or indirectly (it may be a good idea to allow multiple causes as well?). -->
+                            <xsd:element name="cause_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                            <!-- An optional CVSS value: (0,10] -->
+                            <xsd:element name="cvss" type="xsd:double" minOccurs="0" maxOccurs="1"/>
+                            <!-- Optional external references relevant to the threat, such as CVE/CWE entries, links to external sites containing more information, etc. -->
+                            <xsd:element name="externalrefs" minOccurs="0" maxOccurs="1">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="externalref" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <!-- Optional domain specifications or other tags categorizing the threat. -->
+                            <xsd:element name="tags" minOccurs="0" maxOccurs="1">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="tag" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <!-- It is possible that a threat has no known countermeasures (e.g. new threats). -->
+                <xsd:element name="countermeasures" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="countermeasure" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <!-- UUID of the countermeasure in the repository. -->
+                                        <xsd:element name="counter_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <!-- Relation of the countermeasure to the threat. -->
+                                        <xsd:element name="relation" minOccurs="1" maxOccurs="1">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base = "xsd:string">
+                                                    <xsd:enumeration value = "prevent"/>
+                                                    <xsd:enumeration value = "remove"/>
+                                                    <xsd:enumeration value = "detect"/>
+                                                    <xsd:enumeration value = "mitigate"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

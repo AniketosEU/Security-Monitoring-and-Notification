@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:include schemaLocation="DownloadResourceSchema.xsd"/>
+
+    <xsd:element name="coreelement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:resourcedata"/>
+                <!-- Optional CVSS score; defines the objective severity of threats, vulnerabilities, and vulnerability subtypes. See http://nvd.nist.gov/cvss.cfm  -->
+                <xsd:element name="cvss" type="xsd:double" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="coreassociations" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="coreassociation" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="coreuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="coreversion" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="relation" minOccurs="1" maxOccurs="1">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base = "xsd:string">
+                                                    <xsd:enumeration value = "verifies"/>
+                                                    <xsd:enumeration value = "implements"/>
+                                                    <xsd:enumeration value = "fulfils"/>
+                                                    <xsd:enumeration value = "prevents"/>
+                                                    <xsd:enumeration value = "explains"/>
+                                                    <xsd:enumeration value = "threatens"/>
+                                                    <xsd:enumeration value = "resultsin"/>
+                                                    <xsd:enumeration value = "removes"/>
+                                                    <xsd:enumeration value = "detects"/>
+                                                    <xsd:enumeration value = "indicates"/>
+                                                    <xsd:enumeration value = "mitigates"/>
+                                                    <xsd:enumeration value = "causes"/>
+                                                    <xsd:enumeration value = "childof"/>
+                                                    <xsd:enumeration value = "parentof"/>
+                                                    <xsd:enumeration value = "peerof"/>
+                                                    <xsd:enumeration value = "canalsobe"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element name="relationtype" minOccurs="1" maxOccurs="1">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base = "xsd:string">
+<!-- Relation type: forward link (from this core element to another) -->
+                                                    <xsd:enumeration value = "forward"/>
+<!-- Relation type: backlink (from another core element to this one) -->
+                                                    <xsd:enumeration value = "backward"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="modelassociations" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="modelassociation" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="modeluuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="modelversion" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="relation" minOccurs="1" maxOccurs="1">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base = "xsd:string">
+                                                    <xsd:enumeration value = "verifies"/>
+                                                    <xsd:enumeration value = "implements"/>
+                                                    <xsd:enumeration value = "fulfils"/>
+                                                    <xsd:enumeration value = "prevents"/>
+                                                    <xsd:enumeration value = "explains"/>
+                                                    <xsd:enumeration value = "threatens"/>
+                                                    <xsd:enumeration value = "resultsin"/>
+                                                    <xsd:enumeration value = "removes"/>
+                                                    <xsd:enumeration value = "detects"/>
+                                                    <xsd:enumeration value = "indicates"/>
+                                                    <xsd:enumeration value = "mitigates"/>
+                                                    <xsd:enumeration value = "causes"/>
+                                                    <xsd:enumeration value = "childof"/>
+                                                    <xsd:enumeration value = "parentof"/>
+                                                    <xsd:enumeration value = "peerof"/>
+                                                    <xsd:enumeration value = "canalsobe"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="modelelementassociations" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="modelelementassociation" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="modelelementuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="modelelementversion" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="signature" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

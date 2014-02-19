@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:threat  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xmlns:a='http://www.aniketos.eu'
+   xsi:schemaLocation='http://www.aniketos.eu Threat.xsd'>
+
+    <a:metadata>
+        <a:threat_id>ffffeeee-dddd-cccc-bbbb-aaaa99998888</a:threat_id>
+        <a:name>Example threat</a:name>
+        <a:description>Description of the threat goes here (2-3 lines).</a:description>
+        <a:type>vulnerabilityclass</a:type>
+        <a:creationdate>2012-01-01T12:13:14Z</a:creationdate>
+        <a:lastupdated>2012-01-01T12:13:14Z</a:lastupdated>
+        <a:threatclass>T4</a:threatclass>
+        <a:cause_id>77776666-5555-4444-3333-222211110000</a:cause_id>
+        <a:externalrefs>
+            <a:externalref>http://www.example.org/threatinfo.pdf</a:externalref>
+            <a:externalref>CVE-2012-9999</a:externalref>
+        </a:externalrefs>
+    </a:metadata>
+</a:threat>

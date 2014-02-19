@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      targetNamespace="http://www.shields-project.eu/svrs"
+      xmlns:tns="http://www.shields-project.eu/svrs"
+      elementFormDefault="qualified"
+      attributeFormDefault="unqualified">
+
+    <xsd:element name="statistics">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- Number of occurrences of the core element specified below -->
+                <xsd:element name="occurrences" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                <!-- Date/time of the reporting (note: the actual date/time of the observation might be different) -->
+                <xsd:element name="date" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+                <!-- UUID of the tool; tools will be stored in the SVRS in their own table as resources with only one
+                version; the 'version' data below is only informative -->
+                <xsd:element name="toolid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <!-- Version of the tool (this is metadata; can have alphanum characters, ie. '4.7.19 alpha-2') -->
+                <xsd:element name="toolversion" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <!-- ID of the application; this is only used for linkage, not for SVRS storage -->
+                <xsd:element name="applicationid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <!-- Version of the application, see above -->
+                <xsd:element name="applicationversion" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <!-- Type of the software; this should be enumeration-restricted to an appropriate list -->
+                <xsd:element name="softwaretype" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <!-- List of models used to deal with this particular core element -->
+                <xsd:element name="listofmodels" minOccurs="1" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="model" minOccurs="0" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <!-- UUID, version of the specific model -->
+                                        <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="version" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <!-- UUID of the core element the statistical report is about; since this is a core element,
+                its purpose should not change over time, so version doesn't have to be specified -->
+                <xsd:element name="coreelement" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

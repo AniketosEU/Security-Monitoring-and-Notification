@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:include schemaLocation="UploadResourceSchema.xsd"/>
+
+    <xsd:element name="coreelement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:resourcedata"/>
+                <!-- Optional CVSS score; defines the objective severity of threats, vulnerabilities, and vulnerability subtypes. See http://nvd.nist.gov/cvss.cfm  -->
+                <xsd:element name="cvss" type="xsd:double" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="coreassociations" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="coreassociation" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="coreuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="coreversion" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:sequence minOccurs="1" maxOccurs="2">
+                                            <xsd:group ref="tns:relation"/>
+                                        </xsd:sequence>
+                                        <!-- This element will be enumeration-restricted later. -->
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:group name="relation">
+        <xsd:choice>
+            <xsd:element name="forwardrelation" maxOccurs="1">
+                <xsd:simpleType>
+                    <xsd:restriction base = "xsd:string">
+                        <xsd:enumeration value = "verifies"/>
+                        <xsd:enumeration value = "implements"/>
+                        <xsd:enumeration value = "fulfils"/>
+                        <xsd:enumeration value = "prevents"/>
+                        <xsd:enumeration value = "explains"/>
+                        <xsd:enumeration value = "threatens"/>
+                        <xsd:enumeration value = "resultsin"/>
+                        <xsd:enumeration value = "removes"/>
+                        <xsd:enumeration value = "detects"/>
+                        <xsd:enumeration value = "indicates"/>
+                        <xsd:enumeration value = "mitigates"/>
+                        <xsd:enumeration value = "causes"/>
+                        <xsd:enumeration value = "childof"/>
+                        <xsd:enumeration value = "parentof"/>
+                        <xsd:enumeration value = "peerof"/>
+                        <xsd:enumeration value = "canalsobe"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="backwardrelation" maxOccurs="1">
+                <xsd:simpleType>
+                    <xsd:restriction base = "xsd:string">
+                        <xsd:enumeration value = "verifies"/>
+                        <xsd:enumeration value = "implements"/>
+                        <xsd:enumeration value = "fulfils"/>
+                        <xsd:enumeration value = "prevents"/>
+                        <xsd:enumeration value = "explains"/>
+                        <xsd:enumeration value = "threatens"/>
+                        <xsd:enumeration value = "resultsin"/>
+                        <xsd:enumeration value = "removes"/>
+                        <xsd:enumeration value = "detects"/>
+                        <xsd:enumeration value = "indicates"/>
+                        <xsd:enumeration value = "mitigates"/>
+                        <xsd:enumeration value = "causes"/>
+                        <xsd:enumeration value = "childof"/>
+                        <xsd:enumeration value = "parentof"/>
+                        <xsd:enumeration value = "peerof"/>
+                        <xsd:enumeration value = "canalsobe"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:group>
+</xsd:schema>

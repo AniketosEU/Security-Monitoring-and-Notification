@@ -1,0 +1,7 @@
+<features>
+  <feature name="threat_repository" version="1.0">    
+    <bundle>mvn:eu.aniketos.threatrepository/threatrepository-interface/0.1-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.threatrepository.impl/threatrepository-impl/1.0-SNAPSHOT</bundle>
+    <bundle>mvn:eu.aniketos.threatrepository.client/threatrepository-client/0.0.1-SNAPSHOT</bundle>
+  </feature>
+</features>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.shields-project.eu/svrs"
+    xmlns:tns="http://www.shields-project.eu/svrs"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+        
+    <xsd:include schemaLocation="UploadResourceSchema.xsd"/>
+    <xsd:include schemaLocation="UploadModelElementSchema.xsd"/>
+    <xsd:include schemaLocation="ArtefactSchema.xsd"/>
+    <xsd:include schemaLocation="CountermeasureSchema.xsd"/>
+
+    <xsd:element name="model">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="tns:resourcedata"/>
+                <xsd:element name="modelelements" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                            <xsd:element ref="tns:modelelement"/>
+                            <xsd:element name="modelelementref">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="refuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="refversion" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:choice>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="filename" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="modeldata" minOccurs="1" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:choice>
+                            <xsd:element ref="tns:artefact"/>
+                            <xsd:element ref="tns:countermeasure"/>
+                            <xsd:element name="xmidata" type="xsd:string"/>
+                        </xsd:choice>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="representation" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="data" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element name="mimetype" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="coreassociations" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="coreassociation" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="coreuuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="coreversion" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="relation" minOccurs="1" maxOccurs="1">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base = "xsd:string">
+                                                    <xsd:enumeration value = "prevent"/>
+                                                    <xsd:enumeration value = "remove"/>
+                                                    <xsd:enumeration value = "detect"/>
+                                                    <xsd:enumeration value = "mitigate"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
