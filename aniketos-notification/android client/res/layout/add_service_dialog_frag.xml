@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_gravity="center" android:orientation="vertical" >
+
+     <TextView
+        android:id="@+id/lbl_Name" android:text="Name:" 
+        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+      
+    <EditText
+        android:id="@+id/txt_name"
+        android:layout_width="match_parent"  android:layout_height="wrap_content" 
+        android:inputType="text"/>
+    
+    
+    <TextView
+        android:id="@+id/lbl_service_uri" android:text="Service uri:" 
+        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+      
+    <EditText
+        android:id="@+id/txt_service_uri" android:text="http://www.eclipse.org/paho/"
+        android:layout_width="match_parent"  android:layout_height="wrap_content" 
+        android:inputType="text"
+               />
+    
+
+    
+    <LinearLayout 
+    android:id="@+id/LinearLayout02" 
+    android:layout_height="wrap_content" 
+    android:layout_width="fill_parent" 
+    android:layout_alignParentBottom="true">
+    <Button 
+        android:id="@+id/buttonSave" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_weight="1" android:text="Save">
+    </Button>
+    <Button 
+        android:id="@+id/buttonCancel" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:layout_weight="1" 
+        android:text="Cancel">
+    </Button>
+</LinearLayout>
+    
+    
+</LinearLayout>
