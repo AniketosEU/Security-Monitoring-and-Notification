@@ -36,9 +36,13 @@ public class NotificationCursorAdapter extends SimpleCursorAdapter {
 	    super.bindView(v, context, c);
 	    // the value is empty, we clear its linear layout
 	    String value = c.getString(c.getColumnIndex(NotificationData.VALUE));
+	    Log.d(TAG, "value is " + value);
+    	LinearLayout valueLayout = (LinearLayout) v.findViewById(R.id.valueLayout);
 	    if(null == value || value.isEmpty()){	    	
-	    	LinearLayout valueLayout = (LinearLayout) v.findViewById(R.id.valueLayout);
 	    	valueLayout.setVisibility(View.GONE);
+	    }else{
+	    	valueLayout.setVisibility(View.VISIBLE); // if I do not set it explicitly to visible
+	    	//, Android seems to get confused and set some of them to gone
 	    }
 	}
 	
@@ -69,9 +73,7 @@ public class NotificationCursorAdapter extends SimpleCursorAdapter {
         		String servName = app.getServiceNameFromURI(text);
         		text= servName;
         		break;
-        	// omit value layout if value is empty
-    		case R.id.value:
-    			break;
+
     	}
     	
 
