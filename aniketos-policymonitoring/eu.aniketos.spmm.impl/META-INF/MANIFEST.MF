@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SPMM Impl
+Bundle-SymbolicName: eu.aniketos.spmm.impls
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: eu.aniketos.spmm.impl.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+DynamicImport-Package: *
+Bundle-ClassPath: .,
+ lib/junit.jar,
+ lib/javax.persistence.jar,
+ src/,
+ lib/jdom.jar,
+ lib/ConSpec_Parser-2.jar,
+ lib/cxf-bundle-2.3.3.jar
+Import-Package: eu.aniketos.data;version="1.0.0.SNAPSHOT",
+ eu.aniketos.data.impl;version="1.0.0.SNAPSHOT",
+ eu.aniketos.notification,
+ eu.aniketos.spmm,
+ eu.aniketos.spmm.event,
+ org.apache.cxf,
+ org.apache.cxf.endpoint,
+ org.apache.cxf.jaxws.endpoint.dynamic,
+ org.osgi.framework,
+ org.osgi.service.component,
+ org.osgi.util.tracker
+

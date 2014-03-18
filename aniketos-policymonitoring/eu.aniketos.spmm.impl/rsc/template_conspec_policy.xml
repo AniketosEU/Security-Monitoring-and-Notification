@@ -1,0 +1,48 @@
+<specification>
+	<maxint> int </maxint> //0..1
+	<maxlen> int </maxlen> //0..1
+	<scope>session| multisession|global</scope> //1
+	<securitystate>//0..1
+		<declaration> //1..n
+			<type> "int"|"bool"|"string"</type>
+			<identifier>string</identifier>
+			<value>Exp<value>
+		</declaration>
+	</securitystate>
+	<rule>//1..n
+		<before || after || exceptional/>
+/*		<before>
+			<identifier>string</identifier> //1
+			<parameter>//0..n
+				<type> "int"|"bool"|"string"</type>//1
+				<identifier>string</identifier> //1
+			</parameter>
+		</before>
+		<after>
+			<identifier>string</identifier> //1
+			<parameter>//0..n
+				<type> "int"|"bool"|"string"</type>//1
+				<identifier>string</identifier> //1
+			</parameter>
+			<return>//0..1
+				<type> "int"|"bool"|"string"</type>//1
+				<identifier>string</identifier>//1
+			</return>
+		</after>
+		<exceptional>
+			<identifier>string</identifier> //1
+			<parameter>//0..n
+				<type> "int"|"bool"|"string"</type>//1
+				<identifier>string</identifier> //1
+			</parameter>
+		</exceptional>
+*/
+		<perform>//1
+			<reaction>1..n
+				<guard> Bexp </guard>//1
+				<update> command </update>//1
+			</reaction>
+			<else> command </else>//0..1
+		</perform>
+	</rule>
+</specification>
