@@ -1,6 +1,8 @@
 package org.example.mqtt;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.example.mqtt.data.NotificationContentProvider;
@@ -30,6 +32,18 @@ public class MqttApplication extends Application {
 	//public static String ServicesListFragTag = "services_list_frag_tag";
 	//public static String ConfigFragTag = "config_frag_tag";
 	
+	public static final Map<String,String> iconList;
+	static {
+        Map<String, String> temp = new HashMap<String, String>();
+        temp.put("ContextChange", "cat");
+        temp.put("ContractChange", "ninja");
+        temp.put("ContractViolation", "pumpkin");
+        temp.put("SecurityPropertyChange", "settings");
+        temp.put("ServiceChange", "wireless");
+        temp.put("ThreatLevelChange", "world");
+        temp.put("TrustLevelChange", "zombie");        
+        iconList = Collections.unmodifiableMap(temp);
+    }
 	
 	// during the creation of the application, we retrieve the service list from the shared preferences
 	 @Override

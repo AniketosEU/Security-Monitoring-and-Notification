@@ -9,12 +9,14 @@ import org.example.mqtt.R;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,8 +46,18 @@ public class NotificationCursorAdapter extends SimpleCursorAdapter {
 	    	valueLayout.setVisibility(View.VISIBLE); // if I do not set it explicitly to visible
 	    	//, Android seems to get confused and set some of them to gone
 	    }
+	    
+	    String type = c.getString(c.getColumnIndex(NotificationData.ALERT_TYPE));
+	    String imgName = MqttApplication.iconList.get(type);
+	    if(null != imgName){
+	    	int id = context.getResources().getIdentifier("org.example.mqtt:drawable/" + imgName, null, null);
+	    	ImageView img = (ImageView) v.findViewById(R.id.list_image);
+	    	Drawable drawable = context.getResources().getDrawable( id );
+	    	img.setImageDrawable(drawable);
+	    }
 	}
 	
+
 	
     @Override
     public void setViewText(TextView v, String text) {
