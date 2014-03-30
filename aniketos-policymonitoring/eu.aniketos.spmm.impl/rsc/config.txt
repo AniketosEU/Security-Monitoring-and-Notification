@@ -1,0 +1,3 @@
+C:\Users\Roberto\Desktop\aniketos-karaf-0.0.2\aniketos-karaf-0.0.2\rsc\Trustworthiness_Pr.xml
+C:\Users\Roberto\Desktop\aniketos-karaf-0.0.2\aniketos-karaf-0.0.2\rsc\Trustworthiness_Pr.xml
+http://83.235.133.36/AniketosWS/DoUPModuleSoap12HttpPort?wsdl

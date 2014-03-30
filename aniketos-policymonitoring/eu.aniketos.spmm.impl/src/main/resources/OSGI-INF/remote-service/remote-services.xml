@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service-descriptions xmlns="http://www.osgi.org/xmlns/sd/v1.0.0">
+  <service-description>
+    <provide interface="eu.aniketos.trustworthiness.ext.messaging.ITrustworthinessPrediction"></provide>
+    <property name="service.exported.interfaces">*</property>
+    <property name="service.exported.configs">org.apache.cxf.ws</property>
+    <property name="org.apache.cxf.ws.address">http://hestia.atc.gr/eu/aniketos/trustworthiness/ext/messaging/ITrustworthinessPrediction</property>
+  </service-description>
+</service-descriptions>

@@ -1,0 +1,303 @@
+﻿<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="typeType">
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="int"/>
+				<xs:enumeration value="bool"/>
+				<xs:enumeration value="string"/>
+			</xs:restriction>
+</xs:simpleType> 
+
+
+<xs:complexType name="invocationType">
+	<xs:sequence>
+		<xs:element name="identifier" type="xs:string" minOccurs="1" maxOccurs="2"/>
+		<xs:element name="argument" minOccurs="0" maxOccurs="unbounded">
+		  <xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:group name="AexpType">
+	<xs:choice>
+		<xs:element name="sum">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="dif">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="mul">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="mod">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="iconst" type="xs:integer"/>
+		<xs:element name="i_identifier" type="xs:string"/>
+	</xs:choice>
+</xs:group> 
+
+<xs:group name="expType">
+	<xs:choice>
+		<xs:group ref="AexpType"/>
+		<xs:group ref="BexpType"/>
+		<xs:group ref="SexpType"/>
+		<xs:element name="invocation" type="invocationType"/>
+	</xs:choice>
+</xs:group> 
+
+
+
+
+<xs:group name="BexpType">
+	<xs:choice>
+		<xs:element name="or">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="and">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="not">
+			<xs:complexType>
+				<xs:group ref="expType"/>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="bconst" type="xs:boolean"/>
+		<xs:element name="b_identifier" type="xs:string"/>
+		<xs:element name="morethan">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="lessthan">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="i_equal">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="AexpType"/>
+					<xs:group ref="AexpType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="b_equal">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="BexpType"/>
+					<xs:group ref="BexpType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="s_equal">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="SexpType"/>
+					<xs:group ref="SexpType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="morequalthan">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="lessequalthan">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="notequal">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+	</xs:choice>
+</xs:group> 
+
+<xs:group name="SexpType">
+	<xs:choice>
+		<xs:element name="append">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:group ref="expType"/>
+					<xs:group ref="expType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="sconst" type="xs:string"/>
+		<xs:element name="s_identifier" type="xs:string"/>
+	</xs:choice>
+</xs:group> 
+
+
+
+<xs:complexType name="whenType">
+	<xs:sequence>
+		<xs:element name="identifier" type="xs:string"/>
+		<xs:element name="parameter" type="parameterType" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType> 
+
+<xs:complexType name="afterType">
+<xs:complexContent>
+	<xs:extension base="whenType">
+	<xs:sequence>
+	<xs:element name="return" type="parameterType" minOccurs="0"/>
+	</xs:sequence>
+	</xs:extension>
+	</xs:complexContent>
+</xs:complexType> 
+
+<xs:complexType name="parameterType">
+	<xs:sequence>
+		<xs:element name="type" type="typeType"/>
+		<xs:element name="identifier" type="xs:string"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="performType">
+	<xs:sequence>
+		<xs:element name="reaction" type="reactionType" maxOccurs="unbounded"/>
+		<xs:element name="else" type="updateType" minOccurs="0"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reactionType">
+	<xs:sequence>
+	<xs:element name="guard">
+	<xs:complexType>
+    <xs:sequence> 
+	    <xs:group ref="expType"/>
+	</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+		
+		<xs:element name="update" type="updateType"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateType">
+<xs:sequence>
+<xs:element name="assign" type="assignType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="assignType">
+	<xs:sequence>
+		<xs:element name="identifier" type="xs:string"/>
+		<xs:element name="value">
+        <xs:complexType>
+				  <xs:sequence>
+					  <xs:group ref="expType"/>
+				  </xs:sequence>
+			  </xs:complexType>
+			</xs:element>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="declType">
+	<xs:sequence>
+		<xs:element name="type" type="typeType"/>
+		<xs:element name="identifier" type="xs:string"/>
+		<xs:element name="value">
+		<xs:complexType>
+				  <xs:sequence>
+					  <xs:group ref="expType"/>
+				  </xs:sequence>
+			  </xs:complexType>
+			</xs:element>
+	</xs:sequence>
+</xs:complexType> 
+
+<xs:complexType name="stateType">
+  <xs:sequence>
+	<xs:element name="declaration" type="declType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType> 
+
+<xs:complexType name="ruleType">
+	<xs:sequence>
+		<xs:choice>
+			<xs:element name="before" type="whenType"/>
+			<xs:element name="after" type="afterType"/>
+			<xs:element name="exceptional" type="whenType"/>
+		</xs:choice>
+		<xs:element name="perform" type="performType"/>
+	</xs:sequence>
+</xs:complexType> 
+
+<xs:element name="specification">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="maxint" type="xs:integer" minOccurs="0"/>
+      <xs:element name="maxlen" type="xs:integer" minOccurs="0"/>
+      <xs:element name="scope">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="session"/>
+				<xs:enumeration value="multisession"/>
+				<xs:enumeration value="global"/>
+			</xs:restriction>
+		</xs:simpleType>
+	  </xs:element> 
+      <xs:element name="securitystate" type="stateType" minOccurs="0"/>
+      <xs:element name="rule" type="ruleType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/> 
+  </xs:complexType>
+</xs:element>
+
+
+</xs:schema>

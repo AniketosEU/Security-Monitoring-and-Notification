@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lib/ConSpec_Parser-2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javax.persistence.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/junit.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/aniketos-notification-interface-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/aniketos-notification-service-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/common-datatypes-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/jsr311-api-0.10.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-bundle-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/org.osgi.core-1.4.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

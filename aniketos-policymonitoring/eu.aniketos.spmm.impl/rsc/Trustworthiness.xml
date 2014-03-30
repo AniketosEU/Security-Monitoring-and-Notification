@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification id="Rule8"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="xsd_aniketos.xsd">
+<maxint>32000</maxint>
+<maxlen>3000</maxlen>
+   <scope>session</scope>
+
+  <securitystate>
+    <declaration>
+      <type>int</type>
+      <i_identifier>trustworthiness_threshold</i_identifier>
+      <value>
+        <iconst>7</iconst>
+      </value>
+    </declaration>
+  </securitystate>
+
+
+  <rule>
+    <before>
+      <identifier>invokeService</identifier>
+      <parameter>
+        <type>string</type>
+        <identifier>s</identifier>
+      </parameter>
+    </before>
+    <perform>
+      <reaction>
+        <guard>
+          <morethan>
+               <invocation>
+                  <identifier>evaluateTrustworthiness</identifier>
+                  <argument>
+        			  <s_identifier>s</s_identifier>
+                  </argument>
+               </invocation>
+               <i_identifier>trustworthiness_threshold</i_identifier>
+	  </morethan>
+        </guard>
+        <update/>
+      </reaction>
+    </perform>
+  </rule>
+
+</specification>
