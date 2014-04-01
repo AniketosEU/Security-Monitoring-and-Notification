@@ -87,13 +87,7 @@ public class ConfigFragment extends Fragment implements OnClickListener{
 				}
 				
 				
-				// check if app has been configured, in other words, if some subscriptions have been added
-	        	SharedPreferences keyValues = getActivity().getSharedPreferences(MqttApplication.sharedPrefName, Context.MODE_PRIVATE);
-	        	if (keyValues.getAll().isEmpty()){
-	        		toast("you should first add some subscriptions on the config tab");
-	        	}else{
-					connect();
-	        	}
+				connect();
 			}
 			
 			if(v == disconnectButton)

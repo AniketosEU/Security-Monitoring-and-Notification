@@ -170,17 +170,25 @@ public class MQTTSubscriberService extends Service {
 				
 		    	SharedPreferences keyValues = getSharedPreferences(MqttApplication.sharedPrefName, Context.MODE_PRIVATE);
 		    	Map<String, String> initialSubs = (Map<String, String>) keyValues.getAll();
-		    	Topic[] topics = new Topic[initialSubs.size()]; 
-
-		    	int i= 0;
-		    	for (Map.Entry<String, String> entry : initialSubs.entrySet()){
-		    		topics[i] = new Topic(UTF8Buffer.utf8("pub." + entry.getKey() + MQTT_ALL_WILDCARD_SUFFIX), QoS.EXACTLY_ONCE);
-		    		Log.d(TAG, "Added topic " + topics[i].toString());
-		    		i++;
+		    	
+		    	// try to subscribe if there are topics
+		    	if(initialSubs.size() >0){
+			    	
+			    	Topic[] topics = new Topic[initialSubs.size()]; 
+	
+			    	int i= 0;
+			    	for (Map.Entry<String, String> entry : initialSubs.entrySet()){
+			    		topics[i] = new Topic(UTF8Buffer.utf8("pub." + entry.getKey() + MQTT_ALL_WILDCARD_SUFFIX), QoS.EXACTLY_ONCE);
+			    		Log.d(TAG, "Added topic " + topics[i].toString());
+			    		i++;
+			    	}
+								
+					// now trying to subscribe
+					connection.subscribe(topics,onui (new OnsubscribeCallback()));
 		    	}
-							
-				// now trying to subscribe
-				connection.subscribe(topics,onui (new OnsubscribeCallback()));
+		    	else{
+		    		// succeed to connect no code to add
+		    	}
 				
 			}
 			public void onFailure(Throwable e) {
@@ -235,18 +243,20 @@ public class MQTTSubscriberService extends Service {
 				
 		    	SharedPreferences keyValues = getSharedPreferences(MqttApplication.sharedPrefName, Context.MODE_PRIVATE);
 		    	Map<String, String> initialSubs = (Map<String, String>) keyValues.getAll();
-		    	UTF8Buffer[] topics = new UTF8Buffer[initialSubs.size()]; 
-
-		    	int i= 0;
-		    	for (Map.Entry<String, String> entry : initialSubs.entrySet()){
-		    		topics[i] = new UTF8Buffer("pub." + entry.getKey() + MQTT_ALL_WILDCARD_SUFFIX);
-		    		Log.d(TAG, "Unsubscribed topic" + entry.getKey());
-		    		i++;
-		    	}
+		    	if(initialSubs.size() >0){
+			    	UTF8Buffer[] topics = new UTF8Buffer[initialSubs.size()]; 
+	
+			    	int i= 0;
+			    	for (Map.Entry<String, String> entry : initialSubs.entrySet()){
+			    		topics[i] = new UTF8Buffer("pub." + entry.getKey() + MQTT_ALL_WILDCARD_SUFFIX);
+			    		Log.d(TAG, "Unsubscribed topic" + entry.getKey());
+			    		i++;
+			    	}
+						
 					
-				
-				
-				connection.unsubscribe(topics, onui(new UnsubscribeCallback()));
+					
+					connection.unsubscribe(topics, onui(new UnsubscribeCallback()));
+		    	}
 				connection.disconnect(onui(new Callback<Void>(){
 					public void onSuccess(Void value) {
 						// no need to flag to the activity as

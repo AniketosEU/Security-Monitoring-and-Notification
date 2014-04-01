@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:id="@+id/main600">
+    <!-- "Fragment CONFIG" -->
+  <fragment class="org.example.mqtt.ConfigFragment"
+            android:id="@+id/config_frag"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"/>
+  
+      <!-- "Notifications Side by Side" -->
+	  <LinearLayout 
+	  android:orientation="horizontal"
+	  android:layout_width="match_parent"
+	  android:layout_height="0dp"
+	  android:layout_weight="0.8"
+	  android:id="@+id/notifications600">
+
+	      
+			<LinearLayout 
+			  android:orientation="vertical"
+			  android:layout_width="0dp"
+			  android:layout_height="match_parent"
+			  android:layout_weight="0.5"
+			  android:layout_marginRight="12dp"
+			  android:id="@+id/column1">
+			       <TextView
+		        android:id="@+id/col1name" android:text="Available Services" 
+		        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+		        <fragment class="org.example.mqtt.ServicesListFragment"
+		            android:id="@+id/servicelist_fragment"
+		             android:layout_width="match_parent"
+		             android:layout_height="match_parent"
+		             android:layout_weight="0.9"/>
+		                        <Button
+                    android:id="@+id/showAllServicesButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:text="Show All Services" />
+	        </LinearLayout>
+	        
+			<LinearLayout 
+			  android:orientation="vertical"
+			  android:layout_width="0dp"
+			  android:layout_height="match_parent"
+			  android:layout_weight="1"
+			  android:layout_marginRight="12dp"
+			  android:background="@drawable/customborder"
+			  android:id="@+id/column2">
+				<FrameLayout 
+				    android:id="@+id/notifFragment_container"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent">
+
+			    </FrameLayout>
+
+	        </LinearLayout>
+	        
+
+	      
+	      	  
+	 </LinearLayout>
+  
+  
+ 
+</LinearLayout>
