@@ -404,24 +404,23 @@ public class MQTTSubscriberService extends Service {
 	    	try {
 				JSONObject jObject = new JSONObject(messagePayLoad);
 				
+				String serviceid = jObject.getString("serviceId");
 				
-				// time convertion test
-				  String timeInString = jObject.getString("serverTime");
+				// ill just add the subscription if the serviceId matches the list of services
+				// im subscribed to
+				MqttApplication appHandler = (MqttApplication) getApplication();
+				if(null != appHandler.getServiceNameFromURI(serviceid)){
+				
 				  try {
+					  String timeInString = jObject.getString("serverTime");
 					    SimpleDateFormat format =
 					        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z");
 					    Date parsed = format.parse(timeInString);
 					    Calendar c = Calendar.getInstance();
 					    c.setTime(parsed);
-					    // TODO: remove the 3 lines of debuging below
-					    Log.d(TAG, "Date time in millis " + c.getTime().getTime());
-					    String formatted = format.format(c.getTime());
-					    Log.d(TAG, "String date " + formatted);
-					    
-					    
 					    // real inserting
 						  ContentValues values = new ContentValues();
-						  values.put(NotificationData.SERVICE_ID, jObject.getString("serviceId"));
+						  values.put(NotificationData.SERVICE_ID, serviceid);
 						  values.put(NotificationData.ALERT_TYPE, jObject.getString("alertType"));
 						  values.put(NotificationData.DESCRIPTION, jObject.getString("description"));
 						  values.put(NotificationData.SERVER_TIME, c.getTime().getTime());		  
@@ -429,23 +428,16 @@ public class MQTTSubscriberService extends Service {
 						  values.put(NotificationData.THREAT_ID, jObject.getString("threatId"));
 						  values.put(NotificationData.THRESHOLD, jObject.getInt("threshold"));
 						  values.put(NotificationData.SERVICE_FULL_URI, receivedMesageTopic);
-						  
-
-						  
 						
 						Uri instertedUri = getContentResolver().insert(NotificationContentProvider.CONTENT_URI, values);
 						// TODO: handle failure on content provider and on main code  
-
-						
 						value = jObject.getString("value");
-					    
-					    
 					}
 					catch(ParseException pe) {
 					    throw new IllegalArgumentException();
 					}
 				
-				
+				}
 
 				
 			} catch (JSONException e) {
