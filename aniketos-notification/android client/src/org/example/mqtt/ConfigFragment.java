@@ -73,20 +73,7 @@ public class ConfigFragment extends Fragment implements OnClickListener{
 		public void onClick(View v) {
 			if(v == connectButton)
 			{	
-				
-				// TODO: move those checks to the connect function!!
-				// check if there is internet connectivity
-				MainActivity activeHandler = (MainActivity) getActivity();
-				if(activeHandler.isOnline()== false){
-			    	Context context = getActivity();
-			    	int duration = Toast.LENGTH_LONG;
-	
-			    	Toast toast = Toast.makeText(context, "please ensure you are connected to the internet", duration);
-			    	toast.show();
-			    	return;
-				}
-				
-				
+
 				connect();
 			}
 			
@@ -100,12 +87,13 @@ public class ConfigFragment extends Fragment implements OnClickListener{
 		
 
 		
-		private void connect()
+		public void connect()
 		{
 			MainActivity activeHandler = (MainActivity) getActivity();
 			MqttApplication appHandler = (MqttApplication) activeHandler.getApplication();
 			appHandler.setAddress(address.getText().toString());
-			activeHandler.sendMessageToMQTTservice(MQTTSubscriberService.MSG_CONNECT);
+			
+			activeHandler.connect();
 		}
 		private void toast(String message)
 		{

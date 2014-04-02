@@ -153,7 +153,8 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
             	Log.e(TAG, "exception sending message to service - " + e);
             }
 
-
+        	// try to connect on startup
+        	connect();
         }
 
         public void onServiceDisconnected(ComponentName className) {
@@ -253,6 +254,29 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
 		
 		
 	}
+    
+    @Override
+    public void onStart(){
+     super.onStart();
+     Log.d(TAG, "on start called, should we call the connect?");
+    }
+    
+    
+    public void connect(){   	
+    	Log.d(TAG, "connect called on activity");
+
+		
+		// check if there is internet connectivity
+		if(isOnline()== false){
+	    	int duration = Toast.LENGTH_LONG;
+	    	Toast toast = Toast.makeText(this, "Connection failed. Please ensure you are connected to the internet", duration);
+	    	toast.show();
+	    	return;
+		}
+		
+		sendMessageToMQTTservice(MQTTSubscriberService.MSG_CONNECT);
+  
+    }
     
 	
 	@Override
