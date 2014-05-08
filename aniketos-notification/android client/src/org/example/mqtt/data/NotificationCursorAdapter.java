@@ -38,6 +38,7 @@ public class NotificationCursorAdapter extends SimpleCursorAdapter {
 	    super.bindView(v, context, c);
 	    // the value is empty, we clear its linear layout
 	    String value = c.getString(c.getColumnIndex(NotificationData.VALUE));
+	    String description = c.getString(c.getColumnIndex(NotificationData.DESCRIPTION));
 	    Log.d(TAG, "value is " + value);
     	LinearLayout valueLayout = (LinearLayout) v.findViewById(R.id.valueLayout);
 	    if(null == value || value.isEmpty()){	    	
@@ -46,7 +47,13 @@ public class NotificationCursorAdapter extends SimpleCursorAdapter {
 	    	valueLayout.setVisibility(View.VISIBLE); // if I do not set it explicitly to visible
 	    	//, Android seems to get confused and set some of them to gone
 	    }
-	    
+	    TextView descText = (TextView) v.findViewById(R.id.description);
+	    if(null == description || description.isEmpty()){	    	
+	    	descText.setVisibility(View.GONE);
+	    }else{
+	    	descText.setVisibility(View.VISIBLE); // if I do not set it explicitly to visible
+	    	//, Android seems to get confused and set some of them to gone
+	    }
 	    String type = c.getString(c.getColumnIndex(NotificationData.ALERT_TYPE));
 	    String imgName = MqttApplication.iconList.get(type);
 	    if(null != imgName){

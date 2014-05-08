@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@+id/alert"
         android:textSize="12sp"
+        android:gravity="right"
          />
     
 </LinearLayout> 

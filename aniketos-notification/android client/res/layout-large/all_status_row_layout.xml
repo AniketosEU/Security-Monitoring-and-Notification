@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:padding="1dp" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -22,7 +23,7 @@
         </TextView>
         
         <LinearLayout
-          android:layout_width="wrap_content"
+          android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal" >
 
@@ -45,7 +46,7 @@
 
 	           <!--  ListRow Right side of -->
                 <LinearLayout 
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" 
                     >
@@ -64,7 +65,7 @@
 			                android:layout_width="wrap_content"
 			                android:layout_height="wrap_content"
 			                android:padding="3dp"
-			                android:textSize="12sp"
+			                android:textSize="15sp"
 			                android:textStyle="bold"  />
 			
 
@@ -82,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="3dp"
-                            android:textSize="12sp" />  
+                            android:textSize="13sp" />  
 			             
 			        
 				          <LinearLayout
@@ -97,25 +98,26 @@
 				                android:layout_height="wrap_content"
 				                android:text="Value: "
 				                android:padding="3dp"
-				                android:textSize="12sp" />
+				                android:textSize="13sp" />
 				
 				            <TextView
 				                android:id="@+id/value"
 				                android:layout_width="wrap_content"
 				                android:layout_height="wrap_content"
 				                android:padding="3dp"
-				                android:textSize="12sp" />
+				                android:textSize="13sp" />
 				        </LinearLayout> <!--  end of value layout -->
 			        
 			        </LinearLayout> <!--  end of second row -->
 		
 			        <TextView
 			            android:id="@+id/timestamp"
-			            android:layout_width="wrap_content"
+			            android:layout_width="fill_parent"
 			            android:layout_height="wrap_content"
 			            android:padding="3dp"
 			            android:text="date"
-			            android:textSize="8sp" />
+			            android:textSize="10sp"
+			            android:gravity="right" />
                 </LinearLayout>
         </LinearLayout>
     </LinearLayout>

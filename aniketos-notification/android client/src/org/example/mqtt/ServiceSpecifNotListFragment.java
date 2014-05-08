@@ -38,7 +38,7 @@ public class ServiceSpecifNotListFragment extends ListFragment implements
 		super.onCreate(savedInstanceState);
 		
 			String[] uiBindFrom = { NotificationData.ALERT_TYPE, NotificationData.DESCRIPTION, NotificationData.VALUE,NotificationData.SERVER_TIME };
-		    int[] uiBindTo = { R.id.serv_type, R.id.serv_desc,R.id.notif_val ,R.id.notif_date  }; // from service_specific_notif.row
+		    int[] uiBindTo = { R.id.serv_type, R.id.description,R.id.notif_val ,R.id.notif_date  }; // from service_specific_notif.row
 
 		    getLoaderManager().initLoader(MqttApplication.SERVICE_SPECIFIC_LIST_LOADER, null, this);
 		    adapter = new NotificationCursorAdapter(
