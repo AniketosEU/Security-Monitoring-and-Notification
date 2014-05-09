@@ -368,6 +368,8 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
             break;
 
 	    case R.id.showAllServicesButton:
+	    	
+	    	
 	        // check if fragment is already there
 	    	StatusListFragment fragment = (StatusListFragment)  getSupportFragmentManager().findFragmentByTag("all_status_frag");
 	        if ( (null == fragment) || (false == fragment.isInLayout()) ) {
@@ -379,6 +381,13 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
 				android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
 				fft.replace(R.id.notifFragment_container, fragment, "all_status_frag");
 				fft.commit();
+				
+				// and Ill unhighlight the selected service on the service list
+				ServicesListFragment servListFrag = (ServicesListFragment)  getSupportFragmentManager().findFragmentById(R.id.servicelist_fragment);
+				if(null != servListFrag){
+					servListFrag.unhighlightCurrentSelectedRow();
+				}
+				
 	        } 
 	    	break;
 
@@ -386,7 +395,7 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
 	}
 	
 	
-	// DRAFT FUCTION NOT YET LINKED TO THE SOFTWARE (the phone part), in fact I should probably change 
+	// (the phone part is not yet working), in fact I should probably change 
 	// the service specific list it to an activity itself
 	// this function can be called by fragments to invoke the creation and
 	// display of a fragment with the service specific notifications
@@ -424,6 +433,8 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
 			fft.commit();
 		}
 		else{
+			
+			
 			Fragment newFragment = Fragment.instantiate(this, ServiceSpecifNotListFragment.class.getName());
 			Bundle bundle = new Bundle();
 			bundle.putString(MqttApplication.SERVICE_URI_BUNDLE_TAG, serviceURI);
@@ -433,6 +444,12 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
 			android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
 			fft.replace(R.id.notifFragment_container, newFragment, "specific_service_notif_list");
 			fft.commit();
+			
+			//highlight the service in the service fragment list
+			ServicesListFragment servListFrag = (ServicesListFragment)  getSupportFragmentManager().findFragmentById(R.id.servicelist_fragment);
+			if(null != servListFrag){
+				servListFrag.highlightRowFromURI(serviceURI);
+			}
 		}
 		
 

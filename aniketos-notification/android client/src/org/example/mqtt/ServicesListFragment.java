@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,6 +40,7 @@ public class ServicesListFragment extends ListFragment  {
 	Button addButton = null;
 	
 	ServiceNotifRowAdapter adapter;
+	private View currentSelectedView = null;
 
     boolean is_phone;
 	
@@ -94,6 +97,7 @@ public class ServicesListFragment extends ListFragment  {
 	        transaction.replace(R.id.servicelist_fragment, newFragment).commit();
 		}
 		else{
+			//performHighlightChangeUponSelection(v);
 			MainActivity parent = (MainActivity) getActivity();
 	        parent.showServiceSpecificNotifications(item.getServiceURI(), item.getServiceName());// TODO: replace for
 	        // callback so the fragment code is not dependent on MainActivity
@@ -124,6 +128,52 @@ public class ServicesListFragment extends ListFragment  {
 		public void onDestroy(){
 			super.onDestroy();
 			Log.d(TAG, "on destroy");
-		}	
+		}
 		
+		
+		// to be called by the main activity when the fragment with all notifications is shown
+		public void unhighlightCurrentSelectedRow() {
+			this.unhighlightCurrentRow(this.currentSelectedView);
+		}
+		
+		
+		private void performHighlightChangeUponSelection(View v){
+		    if (currentSelectedView != null && currentSelectedView != v) {
+		        unhighlightCurrentRow(currentSelectedView);
+		    }
+
+		    currentSelectedView = v;
+		    highlightCurrentRow(currentSelectedView);
+			
+		}
+		
+		private void unhighlightCurrentRow(View rowView) {
+		    rowView.setBackgroundColor(Color.TRANSPARENT);
+		    TextView textView = (TextView) rowView.findViewById(R.id.service_name);
+		    textView.setTextColor(Color.LTGRAY);
+		    TextView textView2 = (TextView) rowView.findViewById(R.id.service_id);
+		    //textView2.setTextColor(getResources().getColor(COLOR ID));
+		    textView2.setTextColor(Color.LTGRAY);
+		}
+
+		private void highlightCurrentRow(View rowView) {
+		    rowView.setBackgroundColor(Color.DKGRAY);
+		    TextView textView = (TextView) rowView.findViewById(R.id.service_name);
+		    textView.setTextColor(Color.WHITE);
+		    TextView textView2 = (TextView) rowView.findViewById(R.id.service_id);
+		    textView2.setTextColor(Color.WHITE);
+
+		} 
+		
+		// highlights a row in the 
+		public void highlightRowFromURI(String serviceURI){
+			ArrayList<View> outViews = new ArrayList<View>();
+			ListView l = this.getListView();
+			l.findViewsWithText(outViews, serviceURI, View.FIND_VIEWS_WITH_TEXT);
+			if(outViews.size() == 1){
+				// the text is indeed the child of the row
+				View v = (View) outViews.get(0).getParent();
+				performHighlightChangeUponSelection(v);
+			}
+		}
 }

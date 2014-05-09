@@ -15,6 +15,8 @@
                android:layout_width="match_parent"
                android:layout_height="0dip"
                android:layout_weight="1"
+               android:background="@drawable/bg_key_selector"
+               android:choiceMode="singleChoice"
                android:drawSelectorOnTop="false"/>
 
      <TextView android:id="@id/android:empty"
