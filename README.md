@@ -31,13 +31,12 @@ The Threat Repository Module (TRM), which exposes the list of registered threats
 
 The Security Policy Monitoring Module (SPMM), which is notified of the composite service contract and analyses an event referring to a service contract violation.
 - Primarily part of this package.
-- Upload to GitHub pending.
 
 The Security Property Determination Module (SPDM), which manages the security properties associated with a service. 
 - Primarily part of Secure Service Specification and Deployment package.
 
 The Trustworthiness Component (TM), which is notified on the requirement for monitoring the trustworthiness values of the composite service and analyses an event referring to a change in the trustworthiness level of an offered composite service.
-- Primarily partt of two other packages (Secure Service Specification and Deployment package and Security Service Validation and Verification package).
+- Primarily part of two other packages (Secure Service Specification and Deployment package and Security Service Validation and Verification package).
 
 The Notification Module (NM), which receives subscriptions for notifications to specific security events (i.e. contract change, trust level change, security property change, threat level change, etc.) and compiles the proper alert and notification messages to be communicated to the application and other involved Aniketos components.
 - Primarily part of this package.
