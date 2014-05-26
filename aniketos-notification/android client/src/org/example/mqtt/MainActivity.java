@@ -112,6 +112,7 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
             switch (msg.what) {
                 case MSG_CONNECTED:
                 	setConnectButtons(true);
+                	toastAlert("Connected");
                 	// TODO: maybe add a toast
                     break;
                 case MSG_DISCONNECTED:
@@ -119,7 +120,8 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
                 	setConnectButtons(false);
                     break;
                 case RECONNECT_TIMEOUT_ON_SERVER:
-                    toastAlert("Failed to connect. The port could be closed or the server may still be closing the previous connection. If the last one, wait before trying to reconnect");
+                    toastAlert("Failed to connect");
+                    setConnectButtons(false);
                     break;
                 case SUBSCRIPTION_DONE:
                 	// TODO: maybe add a toast
@@ -352,6 +354,7 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
 			if(null != frag2){
 				frag2.notifyServiceChanged();
 			}
+			showAllServices();
 		}
 	   
 	}
@@ -368,30 +371,34 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
             break;
 
 	    case R.id.showAllServicesButton:
-	    	
-	    	
-	        // check if fragment is already there
-	    	StatusListFragment fragment = (StatusListFragment)  getSupportFragmentManager().findFragmentByTag("all_status_frag");
-	        if ( (null == fragment) || (false == fragment.isInLayout()) ) {
-	        	// as the fragment is not there, I'll reintroduce it
-	        	if(null == fragment){
-	        		fragment = (StatusListFragment) Fragment.instantiate(this, StatusListFragment.class.getName());
-	        		Log.d(TAG, "all notifications fragment is recreated");
-	        	}
-				android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
-				fft.replace(R.id.notifFragment_container, fragment, "all_status_frag");
-				fft.commit();
-				
-				// and Ill unhighlight the selected service on the service list
-				ServicesListFragment servListFrag = (ServicesListFragment)  getSupportFragmentManager().findFragmentById(R.id.servicelist_fragment);
-				if(null != servListFrag){
-					servListFrag.unhighlightCurrentSelectedRow();
-				}
-				
-	        } 
+	    	showAllServices();
+
 	    	break;
 
 		}	
+	}
+	
+	public void showAllServices(){
+    	
+        // check if fragment is already there
+    	StatusListFragment fragment = (StatusListFragment)  getSupportFragmentManager().findFragmentByTag("all_status_frag");
+        if ( (null == fragment) || (false == fragment.isInLayout()) ) {
+        	// as the fragment is not there, I'll reintroduce it
+        	if(null == fragment){
+        		fragment = (StatusListFragment) Fragment.instantiate(this, StatusListFragment.class.getName());
+        		Log.d(TAG, "all notifications fragment is recreated");
+        	}
+			android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
+			fft.replace(R.id.notifFragment_container, fragment, "all_status_frag");
+			fft.commit();
+			
+			// and Ill unhighlight the selected service on the service list
+			ServicesListFragment servListFrag = (ServicesListFragment)  getSupportFragmentManager().findFragmentById(R.id.servicelist_fragment);
+			if(null != servListFrag){
+				servListFrag.unhighlightCurrentSelectedRow();
+			}
+			
+        } 
 	}
 	
 	

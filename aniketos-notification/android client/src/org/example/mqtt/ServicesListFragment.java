@@ -48,6 +48,8 @@ public class ServicesListFragment extends ListFragment  {
 	// basically to be used by the main activity after the Service Add dialog
 	public void notifyServiceListChange(){
 		adapter.notifyDataSetChanged();
+
+
 	}
 	
 	@Override
@@ -148,12 +150,14 @@ public class ServicesListFragment extends ListFragment  {
 		}
 		
 		private void unhighlightCurrentRow(View rowView) {
-		    rowView.setBackgroundColor(Color.TRANSPARENT);
-		    TextView textView = (TextView) rowView.findViewById(R.id.service_name);
-		    textView.setTextColor(Color.LTGRAY);
-		    TextView textView2 = (TextView) rowView.findViewById(R.id.service_id);
-		    //textView2.setTextColor(getResources().getColor(COLOR ID));
-		    textView2.setTextColor(Color.LTGRAY);
+			if(null != rowView){
+			    rowView.setBackgroundColor(Color.TRANSPARENT);
+			    TextView textView = (TextView) rowView.findViewById(R.id.service_name);
+			    textView.setTextColor(Color.DKGRAY);
+			    TextView textView2 = (TextView) rowView.findViewById(R.id.service_id);
+			    //textView2.setTextColor(getResources().getColor(COLOR ID));
+			    textView2.setTextColor(Color.DKGRAY);
+			}
 		}
 
 		private void highlightCurrentRow(View rowView) {

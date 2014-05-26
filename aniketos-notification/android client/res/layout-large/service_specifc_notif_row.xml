@@ -47,7 +47,7 @@
 				        android:textSize="15sp"
 				        android:padding="3dp"
 				        android:textStyle="bold"
-				        android:textColor="#ffcccccc"  >
+				        android:textColor="#ff444444"  >
 				    </TextView>
 				
 
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:padding="3dp"
-                        android:textColor="#ffcccccc" />
+                        android:textColor="#ff444444" />
 			     
 				         <LinearLayout
 				         android:id="@+id/valueLayout"
@@ -81,7 +81,7 @@
 				                android:text="Value: "
 				                android:padding="3dp"
 				                android:textSize="13sp"
-				                android:textColor="#ffcccccc" />
+				                android:textColor="#ff444444" />
 				             
 						    <TextView
 						        android:id="@+id/notif_val"
@@ -89,7 +89,7 @@
 						        android:layout_height="wrap_content"
 						        android:textSize="13sp"
 						        android:padding="3dp"
-						        android:textColor="#ffcccccc" />
+						        android:textColor="#ff444444" />
 						</LinearLayout> <!--  end of value layout -->
 				 </LinearLayout> <!--  end of second row -->	    
 			    
@@ -100,7 +100,7 @@
 			        android:textSize="10sp"
 			        android:padding="3dp"
 			        android:gravity="right"
-			        android:textColor="#ffcccccc"  />
+			        android:textColor="#ff444444"  />
 		    
 		    </LinearLayout>
 		    <!--  end of ListRow Right side -->

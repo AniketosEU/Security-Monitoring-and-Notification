@@ -32,6 +32,8 @@ public class ServiceSpecifNotListFragment extends ListFragment implements
 	AlertDialog alertDeleteService;
 	AlertDialog alertClearDb;
 	
+    boolean is_phone;
+	
 	private NotificationCursorAdapter adapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ServiceSpecifNotListFragment extends ListFragment implements
 			String[] uiBindFrom = { NotificationData.ALERT_TYPE, NotificationData.DESCRIPTION, NotificationData.VALUE,NotificationData.SERVER_TIME };
 		    int[] uiBindTo = { R.id.serv_type, R.id.description,R.id.notif_val ,R.id.notif_date  }; // from service_specific_notif.row
 
+		    is_phone=  getResources().getBoolean(R.bool.is_phone);
 		    getLoaderManager().initLoader(MqttApplication.SERVICE_SPECIFIC_LIST_LOADER, null, this);
 		    adapter = new NotificationCursorAdapter(
 		            getActivity().getApplicationContext(), R.layout.service_specifc_notif_row,
@@ -73,8 +76,11 @@ public class ServiceSpecifNotListFragment extends ListFragment implements
 	                    MqttApplication app = (MqttApplication) m.getApplication();
 	                    app.deleteService(servName,true);
 	                    m.notifyServiceListChanged(false,serviceUri); // TODO: change those by callbacks to the activity (not done yet because I need 
-	                    // to think a nice way to do the back)
-	                    m.onBackPressed();
+	                    // to think a nice way to do the back and avoid the hack below
+	                    if(is_phone)
+	                    	m.onBackPressed();
+	                    else
+	                    	m.showAllServices();
 	               }
 	           })
 	           .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -84,8 +90,12 @@ public class ServiceSpecifNotListFragment extends ListFragment implements
 	                    MqttApplication app = (MqttApplication) m.getApplication();
 	                    app.deleteService(servName,false);
 	                    m.notifyServiceListChanged(false,serviceUri); // TODO: change those by callbacks to the activity (not done yet because I need 
-	                    // to think a nice way to do the back)
-	                    m.onBackPressed();
+	                    // to think a nice way to do the back and avoid the hack below
+	                    if(is_phone)
+	                    	m.onBackPressed();
+	                    else
+	                    	m.showAllServices();
+
 	               }
 	           });
 		    

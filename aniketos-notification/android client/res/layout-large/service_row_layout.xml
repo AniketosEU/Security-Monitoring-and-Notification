@@ -11,7 +11,7 @@
         android:text="@+id/service"
         android:textSize="24sp"
         android:padding="3dp"
-        android:textColor="#ffcccccc">
+        android:textColor="#ff444444">
     </TextView>
 
     <TextView
@@ -21,7 +21,7 @@
         android:text="@+id/alert"
         android:textSize="12sp"
         android:gravity="right"
-        android:textColor="#ffcccccc"
+        android:textColor="#ff444444"
          />
     
 </LinearLayout> 

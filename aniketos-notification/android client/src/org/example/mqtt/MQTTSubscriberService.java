@@ -259,9 +259,19 @@ public class MQTTSubscriberService extends Service {
 		    	}
 				connection.disconnect(onui(new Callback<Void>(){
 					public void onSuccess(Void value) {
-						// no need to flag to the activity as
-						// the listener disconnect will do it
-			           Log.e(TAG, "disconnected gracefully" );
+									            
+						Log.e(TAG, "disconnected gracefully" );
+			      		MqttApplication appHandler = (MqttApplication) getApplication();
+			    		appHandler.setConnection(false);
+			            Message msg = Message.obtain(null,
+			            		MainActivity.MSG_DISCONNECTED);
+			            msg.replyTo = mqttServiceMessenger;
+			            try {
+							mClient.send(msg);
+						} catch (RemoteException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 					}
 					public void onFailure(Throwable e) {
