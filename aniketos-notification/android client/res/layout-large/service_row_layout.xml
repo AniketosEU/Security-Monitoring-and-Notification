@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:text="@+id/service"
         android:textSize="24sp"
-        android:padding="3dp" >
+        android:padding="3dp"
+        android:textColor="#ffcccccc">
     </TextView>
 
     <TextView
@@ -20,6 +21,7 @@
         android:text="@+id/alert"
         android:textSize="12sp"
         android:gravity="right"
+        android:textColor="#ffcccccc"
          />
     
 </LinearLayout> 

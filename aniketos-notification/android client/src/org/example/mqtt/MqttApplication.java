@@ -35,13 +35,13 @@ public class MqttApplication extends Application {
 	public static final Map<String,String> iconList;
 	static {
         Map<String, String> temp = new HashMap<String, String>();
-        temp.put("ContextChange", "cat");
-        temp.put("ContractChange", "ninja");
-        temp.put("ContractViolation", "pumpkin");
-        temp.put("SecurityPropertyChange", "settings");
-        temp.put("ServiceChange", "wireless");
-        temp.put("ThreatLevelChange", "world");
-        temp.put("TrustLevelChange", "zombie");        
+        temp.put("ContextChange", "context");
+        temp.put("ContractChange", "contract");
+        temp.put("ContractViolation", "contract");
+        temp.put("SecurityPropertyChange", "securityproperty");
+        temp.put("ServiceChange", "service");
+        temp.put("ThreatLevelChange", "threat");
+        temp.put("TrustLevelChange", "trust");        
         iconList = Collections.unmodifiableMap(temp);
     }
 	

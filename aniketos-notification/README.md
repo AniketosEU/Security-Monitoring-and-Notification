@@ -3,7 +3,7 @@ Aniketos Notification module
 
 Short description
 -----------------
-(1-3 sentences on what the component is)
+The Aniketos Notification module is composed of X components: ... and the android client (located on te android Client folder). Please refer to the the android client readme for more details about the client itself. 
 
 Overview 
 --------

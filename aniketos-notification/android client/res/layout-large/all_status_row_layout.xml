@@ -66,7 +66,8 @@
 			                android:layout_height="wrap_content"
 			                android:padding="3dp"
 			                android:textSize="15sp"
-			                android:textStyle="bold"  />
+			                android:textStyle="bold" 
+			                android:textColor="#ffcccccc" />
 			
 
 			        </LinearLayout>
@@ -83,7 +84,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="3dp"
-                            android:textSize="13sp" />  
+                            android:textSize="13sp"
+                            android:textColor="#ffcccccc" />  
 			             
 			        
 				          <LinearLayout
@@ -98,14 +100,16 @@
 				                android:layout_height="wrap_content"
 				                android:text="Value: "
 				                android:padding="3dp"
-				                android:textSize="13sp" />
+				                android:textSize="13sp"
+				                android:textColor="#ffcccccc" />
 				
 				            <TextView
 				                android:id="@+id/value"
 				                android:layout_width="wrap_content"
 				                android:layout_height="wrap_content"
 				                android:padding="3dp"
-				                android:textSize="13sp" />
+				                android:textSize="13sp"
+				                android:textColor="#ffcccccc" />
 				        </LinearLayout> <!--  end of value layout -->
 			        
 			        </LinearLayout> <!--  end of second row -->
@@ -117,7 +121,8 @@
 			            android:padding="3dp"
 			            android:text="date"
 			            android:textSize="10sp"
-			            android:gravity="right" />
+			            android:gravity="right"
+			            android:textColor="#ffcccccc" />
                 </LinearLayout>
         </LinearLayout>
     </LinearLayout>

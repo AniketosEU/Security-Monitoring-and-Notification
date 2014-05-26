@@ -119,7 +119,7 @@ public class MainActivity extends FragmentActivity implements TabListener, IServ
                 	setConnectButtons(false);
                     break;
                 case RECONNECT_TIMEOUT_ON_SERVER:
-                    toastAlert("The server is still closing the previous connection. Please wait a bit before trying to reconnect");
+                    toastAlert("Failed to connect. The port could be closed or the server may still be closing the previous connection. If the last one, wait before trying to reconnect");
                     break;
                 case SUBSCRIPTION_DONE:
                 	// TODO: maybe add a toast
